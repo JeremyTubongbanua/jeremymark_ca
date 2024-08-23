@@ -17,14 +17,14 @@ function Header() {
    //  }, []);
 
    return (
-      <header className="sticky top-0 block bg-purple-700 w-full">
+      <header className="sticky top-0 block w-screen font-jockey bg-bg-100 ">
          <div>
-            <h1 className="text-5xl font-bold mb-4 font-jockey">
+            <h1 className="text-5xl font-bold mb-4 px-48 py-4 ">
                JEREMY MARK TUBONGBANUA
             </h1>
          </div>
          <nav className="">
-            <div className="container mx-auto px-4">
+            <div className="bg-secondary-100 px-48">
                <ul className="flex space-x-10 text-lg py-2">
                   <li className="hover:text-blue-300">
                      <Link to="/about">ABOUT</Link>
