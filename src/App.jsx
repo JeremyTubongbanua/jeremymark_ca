@@ -9,17 +9,18 @@ import Projects from "./screens/Projects";
 import Experiences from "./screens/Experiences";
 
 function App() {
-  return (
-    <Router basename="/">
-      <Header />
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/resume" element={<Resume/>} />
-        <Route path="/projects" element={<Projects/>} />
-        <Route path="/experiences" element={<Experiences/>} />
-      </Routes>
-    </Router>
-  );
+   return (
+      <Router basename="/">
+         <Header />
+         <Routes>
+            <Route path="/" element={<About />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/experiences" element={<Experiences />} />
+         </Routes>
+      </Router>
+   );
 }
 
 export default App;
