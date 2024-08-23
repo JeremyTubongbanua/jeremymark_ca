@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css"; // Your custom CSS file
+import { Link } from "react-router-dom";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,16 +27,16 @@ function Header() {
         <div className="container mx-auto px-4">
           <ul className="flex space-x-10 text-lg py-2">
             <li className="hover:text-blue-300">
-              <a href="/about">ABOUT</a>
+              <Link to="/about">ABOUT</Link>
             </li>
             <li className="hover:text-blue-300">
-              <a href="/resume">RESUME</a>
+              <Link to="/resume">RESUME</Link>
             </li>
             <li className="hover:text-blue-300">
-              <a href="/projects">PROJECTS</a>
+              <Link to="/projects">PROJECTS</Link>
             </li>
             <li className="hover:text-blue-300">
-              <a href="/experiences">EXPERIENCES</a>
+              <Link to="/experiences">EXPERIENCES</Link>
             </li>
           </ul>
         </div>
