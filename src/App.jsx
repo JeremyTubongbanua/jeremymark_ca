@@ -10,7 +10,7 @@ import Experiences from "./screens/Experiences";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/">
       <Header />
       <Routes>
         <Route path="/about" element={<About />} />
