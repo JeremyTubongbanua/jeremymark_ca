@@ -6,6 +6,7 @@
 
 header {
   color: var(--primary-color);
+  transition: all 0.3s ease-in-out;
 }
 
 h1 {
@@ -21,8 +22,9 @@ nav ul li a:hover {
 }
 
 .sticky-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
   background-color: var(--secondary-color);
+}
+
+.header-scrolled {
+  padding-top: 0; /* Adjusts the padding when the header is scrolled */
 }
