@@ -9,6 +9,7 @@ export default {
       colors: {
         purple: {
           400: '#9F7AEA',
+          500: '#805AD5',
         },
       },
       spacing: {

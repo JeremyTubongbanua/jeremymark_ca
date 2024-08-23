@@ -27,7 +27,7 @@ function About() {
         <img
           src={"/assets/sunset.jpg"}
           alt="Jeremy at sunset in Banff"
-          className="rounded-lg shadow-lg w-full max-w-2xl animate-fadeIn"
+          className="rounded-lg shadow-lg w-full max-w-2xl animate-fadeIn lazy"
         />
       </div>
     </div>

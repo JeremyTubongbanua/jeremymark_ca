@@ -52,12 +52,12 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
   };
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+    <div className="bg-gray-800 p-6 -lg shadow-lg">
       <div className="mb-4 flex justify-between items-center">
         <h2 className="text-2xl text-white">Filter Projects</h2>
         <button
           onClick={toggleVisibility}
-          className="text-white text-xl bg-gray-700 py-2 px-4 rounded"
+          className="text-white text-xl bg-gray-700 py-2 px-4 "
         >
           {isVisible ? "Hide Filters" : "Show Filters"}
         </button>
@@ -73,7 +73,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
               value={filters.search}
               onChange={handleSingleSelectChange}
               placeholder="SEARCH"
-              className="w-full p-4 rounded bg-gray-300 text-gray-800 text-2xl"
+              className="w-full p-4  bg-gray-300 text-gray-800 text-2xl"
             />
           </div>
 
@@ -86,7 +86,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   name="date"
                   value="ascending"
                   onClick={handleSingleSelectChange}
-                  className={`w-full py-2 px-4 rounded ${
+                  className={`w-full py-2 px-4  ${
                     filters.date === "ascending"
                       ? `${primaryColor} text-white`
                       : "bg-gray-600 text-gray-300"
@@ -98,7 +98,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   name="date"
                   value="descending"
                   onClick={handleSingleSelectChange}
-                  className={`w-full py-2 px-4 rounded ${
+                  className={`w-full py-2 px-4  ${
                     filters.date === "descending"
                       ? `${primaryColor} text-white`
                       : "bg-gray-600 text-gray-300"
@@ -117,7 +117,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={lang}
                     onClick={() => toggleFilter("languages", lang)}
-                    className={`w-full py-2 px-4 rounded ${
+                    className={`w-full py-2 px-4  ${
                       filters.languages.includes(lang)
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
@@ -137,7 +137,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={type}
                     onClick={() => toggleFilter("type", type)}
-                    className={`w-full py-2 px-4 rounded ${
+                    className={`w-full py-2 px-4  ${
                       filters.type.includes(type)
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
@@ -157,7 +157,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={progress}
                     onClick={() => toggleFilter("progress", progress)}
-                    className={`w-full py-2 px-4 rounded ${
+                    className={`w-full py-2 px-4  ${
                       filters.progress === progress
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
@@ -169,7 +169,6 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
               </div>
             </div>
 
-            {/* Association Filter */}
             <div className="flex flex-col">
               <label className="text-white text-xl mb-2">Association</label>
               <div className="space-y-2">
@@ -177,7 +176,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={association}
                     onClick={() => toggleFilter("association", association)}
-                    className={`w-full py-2 px-4 rounded ${
+                    className={`w-full py-2 px-4 ${
                       filters.association.includes(association)
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"

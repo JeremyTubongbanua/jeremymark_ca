@@ -1,10 +1,10 @@
 /* global.css */
 
 :root {
-  --primary-color: #482F9D; /* Tomato Red */
-  --secondary-color: #190B4A; /* Light Salmon */
+  --primary-color: #482F9D;
+  --secondary-color: #190B4A;
   --text-color: #ffffff;
-  --hover-color: #BB3775; /* Orange Red */
+  --hover-color: #BB3775;
 }
 
 body {

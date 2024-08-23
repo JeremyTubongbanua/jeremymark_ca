@@ -10,7 +10,7 @@ const Projects = () => {
   useEffect(() => {
     const loadProjectData = async () => {
       // Example of loading multiple projects, replace with dynamic loading if necessary
-      const projectIds = [1]; // Add more project IDs here
+      const projectIds = [1, 2]; // Add more project IDs here
 
       const loadedProjects = await Promise.all(
         projectIds.map(async (projectId) => {
