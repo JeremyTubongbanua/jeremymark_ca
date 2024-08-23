@@ -1,0 +1,18 @@
+/* global.css */
+
+:root {
+  --primary-color: #482F9D; /* Tomato Red */
+  --secondary-color: #190B4A; /* Light Salmon */
+  --text-color: #ffffff;
+  --hover-color: #BB3775; /* Orange Red */
+}
+
+body {
+  font-family: "Jockey One", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+/* Additional global styles can go here */

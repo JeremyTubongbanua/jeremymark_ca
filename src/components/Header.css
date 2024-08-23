@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Jockey+One&display=swap");
+
+.font-jockey {
+  font-family: "Jockey One", sans-serif;
+}
+
+header {
+  color: var(--primary-color);
+}
+
+h1 {
+  color: var(--text-color);
+}
+
+nav ul li a {
+  color: var(--text-color);
+}
+
+nav ul li a:hover {
+  color: var(--hover-color);
+}
+
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--secondary-color);
+}
