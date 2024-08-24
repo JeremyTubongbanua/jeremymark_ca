@@ -1,12 +1,9 @@
-title: "at_pico_w"
+title: ""
 subtitle: ""
-date: "2024-04-02"
-languages: ["JavaScript", "Python", "C", "C++", "Dart", "Java", "HTML/CSS", "MySQL", ]
-tech: ["Embedded", "UI", "React", "Flutter", "Espressif (ESP-IDF)", "Arduino", "Robotics", "Electrical Engineering", "Fusion360"]
-progress: "Finished"
-association: "Hobby"
-
-# const LANGUAGE_OPTIONS = ["C", "C++", "Dart"];
-# const TYPE_OPTIONS = ["Embedded", "UI"];
-# const PROGRESS_OPTIONS = ["In-Progress", "Finished"];
-# const ASSOCIATION_OPTIONS = ["Ontario Tech", "Atsign", "Hobby"]; // Updated "Side-project" to "Hobby"
+description: ""
+date: "2024-08-23"
+languages: ["Dart", "C"]
+field: ["IoT/Embedded", "Networking"]
+tech: ["CMake", "Linux"]
+progress: "In-Progress"
+association: "Atsign"
