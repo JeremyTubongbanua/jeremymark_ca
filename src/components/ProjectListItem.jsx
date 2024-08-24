@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProjectListItem({ title, subtitle, description, imageSrc, altText, tags }) {
+function ProjectListItem({ title, subtitle, description, date, imageSrc, altText, tags }) {
   const getTagColor = (category) => {
     switch (category) {
       case "language":

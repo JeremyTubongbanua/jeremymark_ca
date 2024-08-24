@@ -50,7 +50,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
     field: [],
     tech: [],
     progress: "", // Initialize as a string to ensure only one can be selected
-    association: [],
+    association: "", // Single selection for association
   });
 
   const [isVisible, setIsVisible] = useState(true);
@@ -62,8 +62,8 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
   const toggleFilter = (name, value) => {
     setFilters((prev) => {
       let newFilters;
-      if (name === "progress") {
-        // Ensure only one progress filter is selected at a time
+      if (name === "progress" || name === "association") {
+        // Ensure only one progress or association filter is selected at a time
         newFilters = { ...prev, [name]: prev[name] === value ? "" : value };
       } else {
         const isActive = prev[name].includes(value);
@@ -203,7 +203,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                     key={association}
                     onClick={() => toggleFilter("association", association)}
                     className={`w-full py-2 px-4 rounded ${
-                      filters.association.includes(association)
+                      filters.association === association
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
                     } text-lg`}

@@ -43,8 +43,14 @@ const Projects = () => {
         })
       );
 
-      // Sort projects by date ascending by default
-      const sortedProjects = loadedProjects.sort((a, b) => a.date - b.date);
+      // Sort projects by date ascending by default and then by newest within each year
+      const sortedProjects = loadedProjects.sort((a, b) => {
+        const yearDifference = a.date.getFullYear() - b.date.getFullYear();
+        if (yearDifference === 0) {
+          return b.date - a.date; // Sort within the same year by newest first
+        }
+        return yearDifference;
+      });
 
       setAllProjects(sortedProjects);
       setFilteredProjects(sortedProjects); // Display all projects by default
@@ -63,13 +69,64 @@ const Projects = () => {
       );
     }
 
-    // Apply additional filters here
+    // Apply languages filter
+    if (filters.languages.length > 0) {
+      projects = projects.filter((project) =>
+        filters.languages.every((lang) =>
+          project.tags.some((tag) => tag.category === "language" && tag.name === lang)
+        )
+      );
+    }
+
+    // Apply field filter
+    if (filters.field.length > 0) {
+      projects = projects.filter((project) =>
+        filters.field.every((field) =>
+          project.tags.some((tag) => tag.category === "field" && tag.name === field)
+        )
+      );
+    }
+
+    // Apply tech filter
+    if (filters.tech.length > 0) {
+      projects = projects.filter((project) =>
+        filters.tech.every((tech) =>
+          project.tags.some((tag) => tag.category === "tech" && tag.name === tech)
+        )
+      );
+    }
+
+    // Apply progress filter
+    if (filters.progress) {
+      projects = projects.filter((project) =>
+        project.tags.some((tag) => tag.category === "progress" && tag.name === filters.progress)
+      );
+    }
+
+    // Apply association filter
+    if (filters.association) {
+      projects = projects.filter((project) =>
+        project.tags.some((tag) => tag.category === "association" && tag.name === filters.association)
+      );
+    }
 
     // Apply date sorting
     if (filters.date === "ascending") {
-      projects.sort((a, b) => a.date - b.date);
+      projects.sort((a, b) => {
+        const yearDifference = a.date.getFullYear() - b.date.getFullYear();
+        if (yearDifference === 0) {
+          return b.date - a.date; // Sort within the same year by newest first
+        }
+        return yearDifference;
+      });
     } else if (filters.date === "descending") {
-      projects.sort((a, b) => b.date - a.date);
+      projects.sort((a, b) => {
+        const yearDifference = b.date.getFullYear() - a.date.getFullYear();
+        if (yearDifference === 0) {
+          return a.date - b.date; // Sort within the same year by oldest first
+        }
+        return yearDifference;
+      });
     }
 
     setFilteredProjects(projects);
