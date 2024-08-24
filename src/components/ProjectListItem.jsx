@@ -37,10 +37,10 @@ function ProjectListItem({
          </div>
 
          <div className="flex justify-between items-center w-full">
-            <h2 className="text-3xl font-bold text-white w-3/4 block truncate">
+            <h2 className={`text-3xl font-bold text-white w-full ${title.length > 20 ? 'text-2xl' : 'text-3xl'}`}>
                {title}
             </h2>
-            <div className="bg-yellow-400 text-black font-semibold text-sm px-2 w-1/2">
+            <div className={`bg-yellow-400 text-black font-semibold px-2 ${title.length > 20 ? 'text-xs' : 'text-sm'} ml-2`}>
                {subtitle}
             </div>
          </div>

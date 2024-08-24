@@ -16,8 +16,8 @@ FROM nginx:alpine
 
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy custom NGINX configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copy custom NGINX configuration into the correct directory
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 RUN chmod -R 755 /usr/share/nginx/html/assets && \
     chown -R nginx:nginx /usr/share/nginx/html/assets
