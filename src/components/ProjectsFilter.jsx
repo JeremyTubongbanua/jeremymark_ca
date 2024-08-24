@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import '../constants';
+import { getTagColor } from "../utils/tagColors.js";
 import { LANGUAGE_OPTIONS, TECH_OPTIONS, FIELD_OPTIONS, ASSOCIATION_OPTIONS, PROGRESS_OPTIONS } from "../constants";
 
-
-function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
+function ProjectsFilter({ onFilterChange }) {
   const initialFilters = {
     search: "",
     languages: [],
@@ -99,7 +98,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                     onClick={() => toggleFilter("languages", lang)}
                     className={`w-full py-2 px-4 ${
                       filters.languages.includes(lang)
-                        ? `${primaryColor} text-white`
+                        ? `${getTagColor("language")} text-white`
                         : "bg-gray-600 text-gray-300"
                     } text-lg`}
                   >
@@ -117,9 +116,9 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={field}
                     onClick={() => toggleFilter("field", field)}
-                    className={`w-full py-2 px-4  ${
+                    className={`w-full py-2 px-4 ${
                       filters.field.includes(field)
-                        ? `${primaryColor} text-white`
+                        ? `${getTagColor("field")} text-white`
                         : "bg-gray-600 text-gray-300"
                     } text-lg`}
                   >
@@ -137,9 +136,9 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={tech}
                     onClick={() => toggleFilter("tech", tech)}
-                    className={`w-full py-2 px-4  ${
+                    className={`w-full py-2 px-4 ${
                       filters.tech.includes(tech)
-                        ? `${primaryColor} text-white`
+                        ? `${getTagColor("tech")} text-white`
                         : "bg-gray-600 text-gray-300"
                     } text-lg`}
                   >
@@ -157,9 +156,9 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={progress}
                     onClick={() => toggleFilter("progress", progress)}
-                    className={`w-full py-2 px-4  ${
+                    className={`w-full py-2 px-4 ${
                       filters.progress === progress
-                        ? `${primaryColor} text-white`
+                        ? `${getTagColor("progress")} text-white`
                         : "bg-gray-600 text-gray-300"
                     } text-lg`}
                   >
@@ -177,9 +176,9 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={association}
                     onClick={() => toggleFilter("association", association)}
-                    className={`w-full py-2 px-4  ${
+                    className={`w-full py-2 px-4 ${
                       filters.association === association
-                        ? `${primaryColor} text-white`
+                        ? `${getTagColor("association")} text-white`
                         : "bg-gray-600 text-gray-300"
                     } text-lg`}
                   >
