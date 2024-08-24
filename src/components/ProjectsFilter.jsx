@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getTagColor } from "../utils/tagColors.js";
 import { LANGUAGE_OPTIONS, TECH_OPTIONS, FIELD_OPTIONS, ASSOCIATION_OPTIONS, PROGRESS_OPTIONS } from "../constants";
 
@@ -52,6 +52,20 @@ function ProjectsFilter({ onFilterChange }) {
     setFilters(initialFilters);
     onFilterChange(initialFilters);
   };
+
+  useEffect(() => {
+    // Update the filters based on URL query parameters
+    const params = new URLSearchParams(window.location.search);
+
+    setFilters({
+      search: params.get("search") || "",
+      languages: params.get("languages")?.split(",") || [],
+      field: params.get("field")?.split(",") || [],
+      tech: params.get("tech")?.split(",") || [],
+      progress: params.get("progress") || "",
+      association: params.get("association") || "",
+    });
+  }, []);
 
   return (
     <div className="bg-gray-800 p-6 shadow-lg">

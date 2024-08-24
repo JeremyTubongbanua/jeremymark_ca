@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProjectsFilter from "../components/ProjectsFilter";
 import ProjectsGrid from "../components/ProjectsGrid";
 import yaml from "js-yaml";
+import { useSearchParams } from "react-router-dom";
 import {
   LANGUAGE_OPTIONS,
   TECH_OPTIONS,
@@ -11,13 +12,21 @@ import {
   projectIds
 } from "../constants";
 
-
-
 const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState([]);
-  const [allProjects, setAllProjects] = useState([]); // Store all projects
+  const [allProjects, setAllProjects] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    const filtersFromURL = {
+      search: searchParams.get("search") || "",
+      languages: searchParams.getAll("languages"),
+      field: searchParams.getAll("field"),
+      tech: searchParams.getAll("tech"),
+      progress: searchParams.get("progress") || "",
+      association: searchParams.get("association") || "",
+    };
+
     const validateTag = (tag, category, projectId) => {
       const isValid = {
         language: LANGUAGE_OPTIONS.includes(tag),
@@ -35,7 +44,6 @@ const Projects = () => {
     };
 
     const loadProjectData = async () => {
-
       const loadedProjects = await Promise.all(
         projectIds.map(async (projectId) => {
           const response = await fetch(
@@ -43,10 +51,8 @@ const Projects = () => {
           );
           const text = await response.text();
 
-          // Parse the YAML content
           const metadata = yaml.load(text);
 
-          // Validate and create the tags array from the metadata
           const tags = [
             ...metadata.languages.map((lang) => {
               validateTag(lang, "language", projectId);
@@ -64,110 +70,97 @@ const Projects = () => {
             { name: metadata.progress, category: "progress" },
           ];
 
-          // Validate single tags
           validateTag(metadata.association, "association", projectId);
           validateTag(metadata.progress, "progress", projectId);
 
-          // Create the project object using the metadata
           return {
             id: projectId,
             title: metadata.title,
             subtitle: metadata.subtitle,
             description: metadata.description,
-            date: new Date(metadata.date), // Convert to Date object for sorting
+            date: new Date(metadata.date),
             imageSrc: `/assets/projects/${projectId}/thumbnail.png`,
-            tags, // Add the tags array to the project object
+            tags,
           };
         })
       );
 
-      // Sort projects by date ascending by default and then by newest within each year
       const sortedProjects = loadedProjects.sort((a, b) => {
         const yearDifference = a.date.getFullYear() - b.date.getFullYear();
         if (yearDifference === 0) {
-          return b.date - a.date; // Sort within the same year by newest first
+          return b.date - a.date;
         }
         return yearDifference;
       });
 
       setAllProjects(sortedProjects);
-      setFilteredProjects(sortedProjects); // Display all projects by default
+      applyFilters(filtersFromURL, sortedProjects);
     };
 
     loadProjectData();
   }, []);
 
-  const handleFilterChange = (filters) => {
-    let projects = [...allProjects];
+  const applyFilters = (filters, projects) => {
+    let filtered = [...projects];
 
-    // Apply search filter
     if (filters.search) {
-      projects = projects.filter((project) =>
+      filtered = filtered.filter((project) =>
         project.title.toLowerCase().includes(filters.search.toLowerCase())
       );
     }
 
-    // Apply languages filter
     if (filters.languages.length > 0) {
-      projects = projects.filter((project) =>
+      filtered = filtered.filter((project) =>
         filters.languages.every((lang) =>
           project.tags.some((tag) => tag.category === "language" && tag.name === lang)
         )
       );
     }
 
-    // Apply field filter
     if (filters.field.length > 0) {
-      projects = projects.filter((project) =>
+      filtered = filtered.filter((project) =>
         filters.field.every((field) =>
           project.tags.some((tag) => tag.category === "field" && tag.name === field)
         )
       );
     }
 
-    // Apply tech filter
     if (filters.tech.length > 0) {
-      projects = projects.filter((project) =>
+      filtered = filtered.filter((project) =>
         filters.tech.every((tech) =>
           project.tags.some((tag) => tag.category === "tech" && tag.name === tech)
         )
       );
     }
 
-    // Apply progress filter
     if (filters.progress) {
-      projects = projects.filter((project) =>
+      filtered = filtered.filter((project) =>
         project.tags.some((tag) => tag.category === "progress" && tag.name === filters.progress)
       );
     }
 
-    // Apply association filter
     if (filters.association) {
-      projects = projects.filter((project) =>
+      filtered = filtered.filter((project) =>
         project.tags.some((tag) => tag.category === "association" && tag.name === filters.association)
       );
     }
 
-    // Apply date sorting
-    if (filters.date === "ascending") {
-      projects.sort((a, b) => {
-        const yearDifference = a.date.getFullYear() - b.date.getFullYear();
-        if (yearDifference === 0) {
-          return b.date - a.date; // Sort within the same year by newest first
-        }
-        return yearDifference;
-      });
-    } else if (filters.date === "descending") {
-      projects.sort((a, b) => {
-        const yearDifference = b.date.getFullYear() - a.date.getFullYear();
-        if (yearDifference === 0) {
-          return a.date - b.date; // Sort within the same year by oldest first
-        }
-        return yearDifference;
-      });
-    }
+    setFilteredProjects(filtered);
+  };
 
-    setFilteredProjects(projects);
+  const handleFilterChange = (filters) => {
+    const params = new URLSearchParams();
+
+    if (filters.search) params.set("search", filters.search);
+    filters.languages.forEach(lang => params.append("languages", lang));
+    filters.field.forEach(field => params.append("field", field));
+    filters.tech.forEach(tech => params.append("tech", tech));
+    if (filters.progress) params.set("progress", filters.progress);
+    if (filters.association) params.set("association", filters.association);
+
+    setSearchParams(params);
+
+    applyFilters(filters, allProjects);
   };
 
   return (
