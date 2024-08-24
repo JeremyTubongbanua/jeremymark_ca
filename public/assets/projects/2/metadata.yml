@@ -2,8 +2,8 @@ title: "WeekyWardrobe"
 subtitle: ""
 description: "HawkHacks 2024 Submission; demo clothing platform for weekly outfits"
 date: "2024-05-19"
-languages: ["JavaScript", "Python"]
-field: ["DevOps", "Web Development"]
-tech: ["Docker", "Linux", "Node.js"]
+languages: ["HTML/CSS", "JavaScript", "Python"]
+field: ["Blockchain", "DevOps", "Web Development"]
+tech: ["Docker", "Linux", "Node.js", "React"]
 progress: "Finished"
 association: "Hackathon"

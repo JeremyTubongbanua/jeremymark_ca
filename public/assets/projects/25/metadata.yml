@@ -3,7 +3,7 @@ subtitle: ""
 description: "atProtocol implementation re-written in Micropython for Raspberry Pi Pico W"
 date: "2023-06-20"
 languages: ["Micropython"]
-field: ["IoT/Embedded"]
+field: ["Cryptography", "Cybersecurity", "IoT/Embedded", "Networking"]
 tech: []
 progress: "Finished"
 association: "Atsign"

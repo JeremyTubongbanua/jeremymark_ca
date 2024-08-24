@@ -2,7 +2,7 @@ title: "SuperCoolFlights"
 subtitle: ""
 description: "SOFE 3980U Final; Flight booking web application"
 date: "2024-04-02"
-languages: ["JavaScript"]
+languages: ["HTML/CSS", "JavaScript"]
 field: ["DevOps", "Web Development"]
 tech: ["Docker", "Linux", "Node.js"]
 progress: "Finished"

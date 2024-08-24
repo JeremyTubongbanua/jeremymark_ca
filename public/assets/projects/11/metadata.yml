@@ -1,8 +1,8 @@
 title: "WikiPathFinder"
 description: "Hack The Job 2022 Submission; Uses Distributed Computing to find the shortest path between two Wikipedia articles"
 date: "2022-01-09"
-languages: ["JavaScript"]
+languages: ["HTML/CSS", "JavaScript"]
 field: ["Web Development"]
-tech: ["Node.js"]
+tech: ["Node.js", "React"]
 progress: "Finished"
 association: "Hackathon"
