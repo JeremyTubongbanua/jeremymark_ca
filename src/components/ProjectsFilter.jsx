@@ -15,6 +15,7 @@ const FIELD_OPTIONS = [
   "DevOps",
   "Electrical Engineering",
   "IoT/Embedded",
+  "Networking",
   "Robotics",
   "Web Development",
 ];

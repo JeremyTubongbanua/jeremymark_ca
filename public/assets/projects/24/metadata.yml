@@ -1,0 +1,9 @@
+title: "at_esp32"
+subtitle: ""
+description: "atProtocol implementation re-written in C++ for ESP32 Arduino"
+date: "2023-04-26"
+languages: ["C++"]
+field: ["IoT/Embedded"]
+tech: ["Espressif (ESP-IDF)"]
+progress: "Finished"
+association: "Atsign"
