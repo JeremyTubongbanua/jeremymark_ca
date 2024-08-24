@@ -1,3 +1,4 @@
+# Stage 1: Build the application
 FROM node:18-alpine AS build
 
 WORKDIR /app
@@ -10,9 +11,13 @@ RUN npm install
 
 RUN npm run build
 
+# Stage 2: Serve the application using NGINX
 FROM nginx:alpine
 
 COPY --from=build /app/dist /usr/share/nginx/html
+
+# Copy custom NGINX configuration
+COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN chmod -R 755 /usr/share/nginx/html/assets && \
     chown -R nginx:nginx /usr/share/nginx/html/assets
