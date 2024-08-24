@@ -7,12 +7,14 @@ import About from "./screens/About";
 import Resume from "./screens/Resume";
 import Projects from "./screens/Projects";
 import Experiences from "./screens/Experiences";
+import ProjectPage from "./components/ProjectPage";
 
 function App() {
    return (
       <Router>
          <Header />
          <Routes>
+            <Route path="/projects/:projectId" element={<ProjectPage />} />
             <Route path="/" element={<About />} />
             <Route path="/about" element={<About />} />
             <Route path="/resume" element={<Resume />} />

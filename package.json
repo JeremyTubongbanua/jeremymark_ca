@@ -18,7 +18,10 @@
     "react-modal": "^3.16.1",
     "react-pdf": "^9.1.0",
     "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "react-slick": "^0.30.2",
+    "rehype-raw": "^7.0.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
