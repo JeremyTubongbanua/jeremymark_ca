@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import rehypeRaw from 'rehype-raw';
+import rehypeRaw from "rehype-raw";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,7 +16,9 @@ const ProjectPage = () => {
   useEffect(() => {
     const loadContent = async () => {
       try {
-        const response = await fetch(`/assets/projects/${projectId}/content.md`);
+        const response = await fetch(
+          `/assets/projects/${projectId}/content.md`
+        );
         const text = await response.text();
         setContent(text);
       } catch (error) {
@@ -27,7 +29,9 @@ const ProjectPage = () => {
 
     const loadGallery = async () => {
       try {
-        const response = await fetch(`/assets/projects/${projectId}/gallery/gallery.json`);
+        const response = await fetch(
+          `/assets/projects/${projectId}/gallery/gallery.json`
+        );
         const images = await response.json();
         setGalleryImages(images);
       } catch (error) {
@@ -47,24 +51,24 @@ const ProjectPage = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: '0px',
+    centerPadding: "0px",
     focusOnSelect: true,
     responsive: [
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerPadding: '0px',
-        }
+          centerPadding: "0px",
+        },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 1,
-          centerPadding: '0px',
-        }
-      }
-    ]
+          centerPadding: "0px",
+        },
+      },
+    ],
   };
 
   const openModal = (image) => {
@@ -82,7 +86,7 @@ const ProjectPage = () => {
       <div
         className="relative w-full h-64 bg-cover bg-center"
         style={{
-          backgroundImage: `url(/assets/projects/${projectId}/thumbnail.png)`
+          backgroundImage: `url(/assets/projects/${projectId}/thumbnail.png)`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -92,22 +96,45 @@ const ProjectPage = () => {
       </div>
 
       <div className="bg-purple-400 py-8">
-        <h2 className="text-3xl text-center font-bold text-white mb-4">Gallery</h2>
+        <h2 className="text-3xl text-center font-bold text-white mb-4">
+          Gallery
+        </h2>
         <Slider {...sliderSettings}>
           {galleryImages.map((image, index) => (
             <div key={index} onClick={() => openModal(image)}>
               <img
                 src={`/assets/projects/${projectId}/gallery/${image}`}
                 alt={`Gallery Image ${index + 1}`}
-                className="w-auto h-full object-cover mx-auto cursor-pointer"
+                className="w-auto max-h-[500px] h-auto object-cover mx-auto cursor-pointer"
               />
             </div>
           ))}
         </Slider>
       </div>
 
-      <div className="bg-white p-4 rounded shadow-md mt-8">
-        <ReactMarkdown rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
+      <div className="p-4 shadow-lg">
+        <ReactMarkdown
+          rehypePlugins={[rehypeRaw]}
+          components={{
+            h1: ({ node, ...props }) => (
+              <h1 className="text-4xl font-bold mb-4" {...props} />
+            ),
+            h2: ({ node, ...props }) => (
+              <h2 className="text-3xl font-semibold mb-3" {...props} />
+            ),
+            p: ({ node, ...props }) => (
+              <p className="text-lg mb-2" {...props} />
+            ),
+            a: ({ node, ...props }) => (
+              <a className="text-lg text-blue-500 underline" {...props} />
+            ),
+            li: ({ node, ...props }) => (
+              <li className="text-lg list-disc ml-5 mb-1" {...props} />
+            ),
+          }}
+        >
+          {content}
+        </ReactMarkdown>
       </div>
 
       {/* Modal for large image preview */}
@@ -120,7 +147,7 @@ const ProjectPage = () => {
             <img
               src={`/assets/projects/${projectId}/gallery/${selectedImage}`}
               alt="Large Preview"
-              className="w-full h-auto object-contain"
+              className="w-auto h-300 object-contain"
             />
             <button
               className="absolute top-0 right-0 m-4 text-white text-3xl font-bold"

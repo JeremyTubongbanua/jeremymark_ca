@@ -1,23 +1,10 @@
 import React, { useEffect, useState } from "react";
-// import "./Header.css"; // Your custom CSS file
 import { Link } from "react-router-dom";
 
 function Header() {
-   //  const [isScrolled, setIsScrolled] = useState(false);
-
-   //  useEffect(() => {
-   //     const handleScroll = () => {
-   //        setIsScrolled(window.scrollY > 50); // Adjust this value based on when you want to hide the header text
-   //     };
-
-   //     window.addEventListener("scroll", handleScroll);
-   //     return () => {
-   //        window.removeEventListener("scroll", handleScroll);
-   //     };
-   //  }, []);
 
    return (
-      <header className="sticky top-0 block w-screen font-jockey bg-bg-100 ">
+      <header className="w-screen font-jockey bg-bg-100 ">
          <div>
             <h1 className="text-5xl font-bold mb-4 px-48 py-4 ">
                JEREMY MARK TUBONGBANUA
