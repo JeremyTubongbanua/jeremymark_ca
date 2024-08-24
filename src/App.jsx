@@ -1,7 +1,7 @@
 import React from "react";
 import "./tailwind.css";
 import "./global.css";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import About from "./screens/About";
 import Resume from "./screens/Resume";
@@ -10,7 +10,7 @@ import Experiences from "./screens/Experiences";
 
 function App() {
    return (
-      <Router basename="/">
+      <Router>
          <Header />
          <Routes>
             <Route path="/" element={<About />} />
