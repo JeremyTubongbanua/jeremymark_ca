@@ -4,6 +4,6 @@ description: "Joint IoT demo with Qt and Atsign demonstrating secure plant IoT m
 date: "2024-01-10"
 languages: ["Python"]
 field: ["IoT/Embedded"]
-tech: ["Linux"]
+tech: ["Fusion360", "Linux"]
 progress: "Finished"
 association: "Atsign"

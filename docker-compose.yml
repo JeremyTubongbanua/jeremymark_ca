@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  jeremymark_ca:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: jeremymark_ca
+    container_name: jeremymark_ca
+    ports:
+      - "80:80"
+    restart: "no"
