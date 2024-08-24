@@ -29,6 +29,7 @@ const ProjectsGrid = ({ projects }) => {
                   imageSrc={project.imageSrc}
                   altText={project.altText}
                   tags={project.tags}
+                  projectId={project.id}
                 />
               ))}
             </div>
