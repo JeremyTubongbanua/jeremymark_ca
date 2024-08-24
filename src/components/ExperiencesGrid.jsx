@@ -3,7 +3,9 @@ import ExperienceListItem from "./ExperienceListItem";
 
 const ExperiencesGrid = ({ experiences }) => {
   const experiencesByYear = experiences.reduce((acc, experience) => {
-    const year = new Date(experience.fromDate).getFullYear();
+    const endDate = experience.todate ? new Date(experience.todate) : new Date();
+    const year = endDate.getFullYear();
+
     if (!acc[year]) {
       acc[year] = [];
     }
@@ -11,10 +13,18 @@ const ExperiencesGrid = ({ experiences }) => {
     return acc;
   }, {});
 
+  const presentYear = "Present";
+
+  // Collect ongoing experiences (without `todate`) under "Present"
+  const ongoingExperiences = experiences.filter(experience => !experience.todate);
+  if (ongoingExperiences.length > 0) {
+    experiencesByYear[presentYear] = ongoingExperiences;
+  }
+
   return (
     <div className="py-4">
       {Object.keys(experiencesByYear)
-        .sort((a, b) => b - a)
+        .sort((a, b) => (a === presentYear ? -1 : b === presentYear ? 1 : b - a))
         .map((year) => (
           <div key={year} className="mb-8">
             <h2 className="text-3xl font-bold text-white mb-4">{year}</h2>
@@ -25,12 +35,11 @@ const ExperiencesGrid = ({ experiences }) => {
                   title={experience.title}
                   subtitle={experience.subtitle}
                   description={experience.description}
-                  fromDate={experience.fromDate}
-                  toDate={experience.toDate}
+                  fromdate={experience.fromdate}
+                  todate={experience.todate}
                   imageSrc={experience.imageSrc}
                   altText={experience.altText}
                   tags={experience.tags}
-                  experienceId={experience.id}
                 />
               ))}
             </div>

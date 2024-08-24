@@ -61,8 +61,8 @@ const Experiences = () => {
             title: metadata.title,
             subtitle: metadata.subtitle,
             description: metadata.description,
-            fromDate: new Date(metadata["fromdate"]),
-            toDate: new Date(metadata["todate"]),
+            fromdate: metadata.fromdate,  // Use consistent prop name
+            todate: metadata.todate,      // Use consistent prop name
             imageSrc: `/assets/experiences/${experienceId}/thumbnail.png`,
             tags,
           };
@@ -70,9 +70,9 @@ const Experiences = () => {
       );
 
       const sortedExperiences = loadedExperiences.sort((a, b) => {
-        const yearDifference = a.fromDate.getFullYear() - b.fromDate.getFullYear();
+        const yearDifference = new Date(a.fromdate).getFullYear() - new Date(b.fromdate).getFullYear();
         if (yearDifference === 0) {
-          return b.fromDate - a.fromDate;
+          return new Date(b.fromdate) - new Date(a.fromdate);
         }
         return yearDifference;
       });
