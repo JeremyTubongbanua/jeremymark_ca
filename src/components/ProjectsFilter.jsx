@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getTagColor } from "../utils/tagColors.js";
 import { LANGUAGE_OPTIONS, TECH_OPTIONS, FIELD_OPTIONS, ASSOCIATION_OPTIONS, PROGRESS_OPTIONS } from "../constants";
+import { useSearchParams } from "react-router-dom";
 
 function ProjectsFilter({ onFilterChange }) {
   const initialFilters = {
@@ -14,9 +15,31 @@ function ProjectsFilter({ onFilterChange }) {
 
   const [filters, setFilters] = useState(initialFilters);
   const [isVisible, setIsVisible] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    // Update the filters based on URL query parameters
+    setFilters({
+      search: searchParams.get("search") || "",
+      languages: searchParams.get("languages")?.split(",") || [],
+      field: searchParams.get("field")?.split(",") || [],
+      tech: searchParams.get("tech")?.split(",") || [],
+      progress: searchParams.get("progress") || "",
+      association: searchParams.get("association") || "",
+    });
+
+    // Set the visibility state based on the URL parameter
+    const visibilityParam = searchParams.get("filtersVisible");
+    setIsVisible(visibilityParam !== "false");
+  }, [searchParams]);
 
   const toggleVisibility = () => {
-    setIsVisible((prev) => !prev);
+    const newVisibility = !isVisible;
+    setIsVisible(newVisibility);
+
+    // Update the URL with the new visibility state
+    searchParams.set("filtersVisible", newVisibility);
+    setSearchParams(searchParams);
   };
 
   const toggleFilter = (name, value) => {
@@ -52,20 +75,6 @@ function ProjectsFilter({ onFilterChange }) {
     setFilters(initialFilters);
     onFilterChange(initialFilters);
   };
-
-  useEffect(() => {
-    // Update the filters based on URL query parameters
-    const params = new URLSearchParams(window.location.search);
-
-    setFilters({
-      search: params.get("search") || "",
-      languages: params.get("languages")?.split(",") || [],
-      field: params.get("field")?.split(",") || [],
-      tech: params.get("tech")?.split(",") || [],
-      progress: params.get("progress") || "",
-      association: params.get("association") || "",
-    });
-  }, []);
 
   return (
     <div className="bg-gray-800 p-6 shadow-lg">

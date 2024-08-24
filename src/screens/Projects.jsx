@@ -16,13 +16,14 @@ const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [allProjects, setAllProjects] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const filtersFromURL = {
       search: searchParams.get("search") || "",
-      languages: searchParams.getAll("languages"),
-      field: searchParams.getAll("field"),
-      tech: searchParams.getAll("tech"),
+      languages: searchParams.get("languages")?.split(",") || [],
+      field: searchParams.get("field")?.split(",") || [],
+      tech: searchParams.get("tech")?.split(",") || [],
       progress: searchParams.get("progress") || "",
       association: searchParams.get("association") || "",
     };
@@ -157,6 +158,8 @@ const Projects = () => {
     filters.tech.forEach(tech => params.append("tech", tech));
     if (filters.progress) params.set("progress", filters.progress);
     if (filters.association) params.set("association", filters.association);
+    
+    params.set("filtersVisible", isVisible.toString());
 
     setSearchParams(params);
 
