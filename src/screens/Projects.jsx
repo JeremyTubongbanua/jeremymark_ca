@@ -9,7 +9,6 @@ const Projects = () => {
 
   useEffect(() => {
     const loadProjectData = async () => {
-      // Example of loading multiple projects, replace with dynamic loading if necessary
       const projectIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]; // Add more project IDs here
 
       const loadedProjects = await Promise.all(
@@ -22,6 +21,15 @@ const Projects = () => {
           // Parse the YAML content
           const metadata = yaml.load(text);
 
+          // Create the tags array from the metadata
+          const tags = [
+            ...metadata.languages.map((lang) => ({ name: lang, category: "language" })),
+            ...metadata.field.map((field) => ({ name: field, category: "field" })),
+            ...metadata.tech.map((tech) => ({ name: tech, category: "tech" })),
+            { name: metadata.association, category: "association" },
+            { name: metadata.progress, category: "progress" },
+          ];
+
           // Create the project object using the metadata
           return {
             id: projectId,
@@ -30,6 +38,7 @@ const Projects = () => {
             description: metadata.description,
             date: new Date(metadata.date), // Convert to Date object for sorting
             imageSrc: `/assets/projects/${projectId}/thumbnail.png`,
+            tags, // Add the tags array to the project object
           };
         })
       );

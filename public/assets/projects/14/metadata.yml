@@ -1,12 +1,9 @@
 title: "BeaverBot"
-subtitle: ""
+subtitle: "2nd Place Winner"
+description: "Calgary Hacks 2021"
 date: "2021-02-14"
-languages: ["JavaScript", "Python", "C", "C++", "Dart", "Java", "HTML/CSS", "MySQL", ]
-type: ["Embedded", "UI", "React", "Flutter", "Espressif (ESP-IDF)", "Arduino", "Robotics", "Electrical Engineering", "Fusion360"]
+languages: []
+field: []
+tech: ["Node.js"]
 progress: "Finished"
-association: "Hobby"
-
-# const LANGUAGE_OPTIONS = ["C", "C++", "Dart"];
-# const TYPE_OPTIONS = ["Embedded", "UI"];
-# const PROGRESS_OPTIONS = ["In-Progress", "Finished"];
-# const ASSOCIATION_OPTIONS = ["Ontario Tech", "Atsign", "Hobby"]; // Updated "Side-project" to "Hobby"
+association: "Hackathon"

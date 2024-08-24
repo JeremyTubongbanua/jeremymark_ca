@@ -1,12 +1,9 @@
 title: "CleanChoice"
-subtitle: "Schulich Hacks 2023"
+subtitle: "2nd Place and Best UI/UX Award"
+description: "Schulich Hacks 2023"
 date: "2023-04-29"
-languages: ["JavaScript", "Python", "C", "C++", "Dart", "Java", "HTML/CSS", "MySQL", ]
-type: ["Embedded", "UI", "React", "Flutter", "Espressif (ESP-IDF)", "Arduino", "Robotics", "Electrical Engineering", "Fusion360"]
+languages: ["JavaScript"]
+field: ["App Development"]
+tech: ["Node.js"]
 progress: "Finished"
-association: "Hobby"
-
-# const LANGUAGE_OPTIONS = ["C", "C++", "Dart"];
-# const TYPE_OPTIONS = ["Embedded", "UI"];
-# const PROGRESS_OPTIONS = ["In-Progress", "Finished"];
-# const ASSOCIATION_OPTIONS = ["Ontario Tech", "Atsign", "Hobby"]; // Updated "Side-project" to "Hobby"
+association: "Hackathon"

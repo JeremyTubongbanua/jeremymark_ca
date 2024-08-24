@@ -1,7 +1,8 @@
 title: "WeekyWardrobe"
-subtitle: "Clothing trading platform"
+description: "HawkHacks 2024"
 date: "2024-05-19"
-languages: ["JavaScript", "Python", "C"]
-type: ["UI"]
+languages: ["JavaScript", "Python"]
+field: ["DevOps", "Web Development"]
+tech: ["Docker", "Linux", "Node.js"]
 progress: "Finished"
-association: "Hobby"
+association: "Hackathon"

@@ -1,21 +1,56 @@
 import React, { useState } from "react";
 
-// Define filter options as constants
-const LANGUAGE_OPTIONS = ["C", "C++", "Dart", "JavaScript", "Python", "Java"];
-const FIELD_OPTIONS = ["Embedded", "UI/UX", "Networking", "DevOps", "Data Science", "AI/ML", "Robotics", "Electrical Engineering"];
-const TECH_OPTIONS = ["React", "Vite", "Espressif (ESP-IDF)", "Fusion360", "KiCad", "CMake", "Flutter"]
-const PROGRESS_OPTIONS = ["In-Progress", "Finished"];
-const ASSOCIATION_OPTIONS = ["Hobby", "High School", "Ontario Tech", "Atsign", "Hobby"];
+const LANGUAGE_OPTIONS = [
+  "C",
+  "Dart",
+  "Java",
+  "JavaScript",
+  "MySQL",
+  "Python",
+];
 
+const FIELD_OPTIONS = [
+  "AI/ML",
+  "App Development",
+  "DevOps",
+  "Electrical Engineering",
+  "IoT/Embedded",
+  "Robotics",
+  "Web Development",
+];
+
+const TECH_OPTIONS = [
+  "CMake",
+  "Docker",
+  "Espressif (ESP-IDF)",
+  "Flutter",
+  "Fusion360",
+  "KiCad",
+  "Linux",
+  "Node.js",
+  "Spigot",
+];
+
+const PROGRESS_OPTIONS = [
+  "In-Progress",
+  "Finished"
+];
+const ASSOCIATION_OPTIONS = [
+  "Hackathon",
+  "Hobby",
+  "High School",
+  "Ontario Tech",
+  "Atsign",
+];
 
 function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
   const [filters, setFilters] = useState({
     search: "",
     languages: [],
-    type: [],
+    field: [],
+    tech: [],
     progress: "", // Initialize as a string to ensure only one can be selected
     association: [],
-    date: "ascending",
   });
 
   const [isVisible, setIsVisible] = useState(true);
@@ -54,12 +89,12 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
   };
 
   return (
-    <div className="bg-gray-800 p-6 -lg shadow-lg">
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
       <div className="mb-4 flex justify-between items-center">
         <h2 className="text-2xl text-white">Filter Projects</h2>
         <button
           onClick={toggleVisibility}
-          className="text-white text-xl bg-gray-700 py-2 px-4 "
+          className="text-white text-xl bg-gray-700 py-2 px-4 rounded"
         >
           {isVisible ? "Hide Filters" : "Show Filters"}
         </button>
@@ -75,42 +110,11 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
               value={filters.search}
               onChange={handleSingleSelectChange}
               placeholder="SEARCH"
-              className="w-full p-4  bg-gray-300 text-gray-800 text-2xl"
+              className="w-full p-4 rounded bg-gray-300 text-gray-800 text-2xl"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
-            {/* Date Filter */}
-            <div className="flex flex-col">
-              <label className="text-white text-xl mb-2">Date</label>
-              <div className="space-y-2">
-                <button
-                  name="date"
-                  value="ascending"
-                  onClick={handleSingleSelectChange}
-                  className={`w-full py-2 px-4  ${
-                    filters.date === "ascending"
-                      ? `${primaryColor} text-white`
-                      : "bg-gray-600 text-gray-300"
-                  } text-lg`}
-                >
-                  Sort by Ascending
-                </button>
-                <button
-                  name="date"
-                  value="descending"
-                  onClick={handleSingleSelectChange}
-                  className={`w-full py-2 px-4  ${
-                    filters.date === "descending"
-                      ? `${primaryColor} text-white`
-                      : "bg-gray-600 text-gray-300"
-                  } text-lg`}
-                >
-                  Sort by Descending
-                </button>
-              </div>
-            </div>
-
             {/* Languages Filter */}
             <div className="flex flex-col">
               <label className="text-white text-xl mb-2">Languages</label>
@@ -119,7 +123,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={lang}
                     onClick={() => toggleFilter("languages", lang)}
-                    className={`w-full py-2 px-4  ${
+                    className={`w-full py-2 px-4 rounded ${
                       filters.languages.includes(lang)
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
@@ -134,17 +138,37 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
             <div className="flex flex-col">
               <label className="text-white text-xl mb-2">Field</label>
               <div className="space-y-2">
-                {FIELD_OPTIONS.map((type) => (
+                {FIELD_OPTIONS.map((field) => (
                   <button
-                    key={type}
-                    onClick={() => toggleFilter("type", type)}
-                    className={`w-full py-2 px-4  ${
-                      filters.type.includes(type)
+                    key={field}
+                    onClick={() => toggleFilter("field", field)}
+                    className={`w-full py-2 px-4 rounded ${
+                      filters.field.includes(field)
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
                     } text-lg`}
                   >
-                    {type}
+                    {field}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Tech Filter */}
+            <div className="flex flex-col">
+              <label className="text-white text-xl mb-2">Tech</label>
+              <div className="space-y-2">
+                {TECH_OPTIONS.map((tech) => (
+                  <button
+                    key={tech}
+                    onClick={() => toggleFilter("tech", tech)}
+                    className={`w-full py-2 px-4 rounded ${
+                      filters.tech.includes(tech)
+                        ? `${primaryColor} text-white`
+                        : "bg-gray-600 text-gray-300"
+                    } text-lg`}
+                  >
+                    {tech}
                   </button>
                 ))}
               </div>
@@ -158,7 +182,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={progress}
                     onClick={() => toggleFilter("progress", progress)}
-                    className={`w-full py-2 px-4  ${
+                    className={`w-full py-2 px-4 rounded ${
                       filters.progress === progress
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
@@ -170,6 +194,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
               </div>
             </div>
 
+            {/* Association Filter */}
             <div className="flex flex-col">
               <label className="text-white text-xl mb-2">Association</label>
               <div className="space-y-2">
@@ -177,7 +202,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={association}
                     onClick={() => toggleFilter("association", association)}
-                    className={`w-full py-2 px-4 ${
+                    className={`w-full py-2 px-4 rounded ${
                       filters.association.includes(association)
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"

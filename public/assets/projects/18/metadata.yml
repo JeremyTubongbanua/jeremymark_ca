@@ -1,12 +1,8 @@
 title: "FRC 2019 Robot"
 subtitle: ""
 date: "2019-06-23"
-languages: ["JavaScript", "Python", "C", "C++", "Dart", "Java", "HTML/CSS", "MySQL", ]
-type: ["Embedded", "UI", "React", "Flutter", "Espressif (ESP-IDF)", "Arduino", "Robotics", "Electrical Engineering", "Fusion360"]
+languages: ["Java"]
+field: ["Robotics"]
+tech: []
 progress: "Finished"
-association: "Hobby"
-
-# const LANGUAGE_OPTIONS = ["C", "C++", "Dart"];
-# const TYPE_OPTIONS = ["Embedded", "UI"];
-# const PROGRESS_OPTIONS = ["In-Progress", "Finished"];
-# const ASSOCIATION_OPTIONS = ["Ontario Tech", "Atsign", "Hobby"]; // Updated "Side-project" to "Hobby"
+association: "High School"

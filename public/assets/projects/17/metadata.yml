@@ -1,12 +1,8 @@
 title: "Instagram Clone"
 subtitle: ""
 date: "2022-05-15"
-languages: ["JavaScript", "Python", "C", "C++", "Dart", "Java", "HTML/CSS", "MySQL", ]
-type: ["Embedded", "UI", "React", "Flutter", "Espressif (ESP-IDF)", "Arduino", "Robotics", "Electrical Engineering", "Fusion360"]
+languages: ["Dart"]
+field: ["App Development"]
+tech: ["Flutter"]
 progress: "Finished"
 association: "Hobby"
-
-# const LANGUAGE_OPTIONS = ["C", "C++", "Dart"];
-# const TYPE_OPTIONS = ["Embedded", "UI"];
-# const PROGRESS_OPTIONS = ["In-Progress", "Finished"];
-# const ASSOCIATION_OPTIONS = ["Ontario Tech", "Atsign", "Hobby"]; // Updated "Side-project" to "Hobby"

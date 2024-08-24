@@ -2,6 +2,8 @@
 
 ## Links
 
-<https://github.com/JeremyTubongbanua/CleanChoice>
+- <https://github.com/JeremyTubongbanua/masterchef>
 
-<https://www.linkedin.com/posts/jeremy-tubongbanua_thank-you-schulich-school-of-engineering-activity-7060422361740677120-37kN?utm_source=share&utm_medium=member_desktop>
+- <https://devpost.com/software/masterchef>
+
+- <https://youtu.be/yTz4LIbChr8>

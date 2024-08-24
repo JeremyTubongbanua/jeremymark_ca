@@ -1,7 +1,9 @@
-title: "Qt/Atsign Plant CES Demo"
-subtitle: ""
+title: "Qt/Atsign Plant"
+subtitle: "CES 2024 Booth Demo"
+description: "Joint IoT demo with Qt and Atsign demonstrating secure plant IoT monitoring"
 date: "2024-01-10"
-languages: ["JavaScript", "Python", "C", "C++", "Dart", "Java", "HTML/CSS", "MySQL", ]
-type: ["Embedded", "UI", "React", "Flutter", "Espressif (ESP-IDF)", "Arduino", "Robotics", "Electrical Engineering", "Fusion360"]
+languages: ["Python"]
+field: ["IoT/Embedded"]
+tech: ["Linux"]
 progress: "Finished"
-association: "Hobby"
+association: "Hackathon"

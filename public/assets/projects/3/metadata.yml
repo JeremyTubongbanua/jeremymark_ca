@@ -1,7 +1,9 @@
-title: ""
+title: "SuperCoolFlights"
 subtitle: ""
+description: "SOFE 3980U Final"
 date: "2024-04-02"
-languages: ["JavaScript", "Python", "C"]
-type: ["UI"]
+languages: ["JavaScript"]
+field: ["DevOps"]
+tech: ["Docker", "Linux", "Node.js"]
 progress: "Finished"
-association: "Hobby"
+association: "Ontario Tech"
