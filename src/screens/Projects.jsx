@@ -7,8 +7,11 @@ import {
   TECH_OPTIONS,
   FIELD_OPTIONS,
   ASSOCIATION_OPTIONS,
-  PROGRESS_OPTIONS
+  PROGRESS_OPTIONS,
+  projectIds
 } from "../constants";
+
+
 
 const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState([]);
@@ -32,9 +35,6 @@ const Projects = () => {
     };
 
     const loadProjectData = async () => {
-      const projectIds = [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26
-      ]; // Add more project IDs here
 
       const loadedProjects = await Promise.all(
         projectIds.map(async (projectId) => {
