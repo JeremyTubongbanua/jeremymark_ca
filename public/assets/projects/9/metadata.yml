@@ -1,8 +1,8 @@
 title: "SuperCoolJobs"
-description: "SOFE 2800U Final"
+description: "SOFE 2800U Final; Job recruitment web application"
 date: "2022-12-05"
 languages: ["JavaScript", "MySQL"]
 field: ["Web Development"]
 tech: ["Node.js"]
 progress: "Finished"
-association: "Hackathon"
+association: "Ontario Tech"
