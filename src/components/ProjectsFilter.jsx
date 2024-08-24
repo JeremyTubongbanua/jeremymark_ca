@@ -1,59 +1,19 @@
 import React, { useState } from "react";
+import '../constants';
+import { LANGUAGE_OPTIONS, TECH_OPTIONS, FIELD_OPTIONS, ASSOCIATION_OPTIONS, PROGRESS_OPTIONS } from "../constants";
 
-const LANGUAGE_OPTIONS = [
-  "C",
-  "Dart",
-  "Java",
-  "JavaScript",
-  "MySQL",
-  "Python",
-];
-
-const FIELD_OPTIONS = [
-  "AI/ML",
-  "App Development",
-  "DevOps",
-  "Electrical Engineering",
-  "IoT/Embedded",
-  "Networking",
-  "Robotics",
-  "Web Development",
-];
-
-const TECH_OPTIONS = [
-  "CMake",
-  "Docker",
-  "Espressif (ESP-IDF)",
-  "Flutter",
-  "Fusion360",
-  "KiCad",
-  "Linux",
-  "Node.js",
-  "Spigot",
-];
-
-const PROGRESS_OPTIONS = [
-  "In-Progress",
-  "Finished"
-];
-const ASSOCIATION_OPTIONS = [
-  "Hackathon",
-  "Hobby",
-  "High School",
-  "Ontario Tech",
-  "Atsign",
-];
 
 function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
-  const [filters, setFilters] = useState({
+  const initialFilters = {
     search: "",
     languages: [],
     field: [],
     tech: [],
     progress: "", // Initialize as a string to ensure only one can be selected
     association: "", // Single selection for association
-  });
+  };
 
+  const [filters, setFilters] = useState(initialFilters);
   const [isVisible, setIsVisible] = useState(true);
 
   const toggleVisibility = () => {
@@ -89,16 +49,29 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
     });
   };
 
+  const handleClearFilters = () => {
+    setFilters(initialFilters);
+    onFilterChange(initialFilters);
+  };
+
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+    <div className="bg-gray-800 p-6 shadow-lg">
       <div className="mb-4 flex justify-between items-center">
         <h2 className="text-2xl text-white">Filter Projects</h2>
-        <button
-          onClick={toggleVisibility}
-          className="text-white text-xl bg-gray-700 py-2 px-4 rounded"
-        >
-          {isVisible ? "Hide Filters" : "Show Filters"}
-        </button>
+        <div className="flex space-x-2">
+          <button
+            onClick={handleClearFilters}
+            className="text-white text-xl bg-red-500 py-2 px-4"
+          >
+            Clear
+          </button>
+          <button
+            onClick={toggleVisibility}
+            className="text-white text-xl bg-gray-700 py-2 px-4"
+          >
+            {isVisible ? "Hide" : "Show"}
+          </button>
+        </div>
       </div>
 
       {isVisible && (
@@ -111,7 +84,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
               value={filters.search}
               onChange={handleSingleSelectChange}
               placeholder="SEARCH"
-              className="w-full p-4 rounded bg-gray-300 text-gray-800 text-2xl"
+              className="w-full p-4 bg-gray-300 text-gray-800 text-2xl"
             />
           </div>
 
@@ -124,7 +97,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={lang}
                     onClick={() => toggleFilter("languages", lang)}
-                    className={`w-full py-2 px-4 rounded ${
+                    className={`w-full py-2 px-4 ${
                       filters.languages.includes(lang)
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
@@ -136,6 +109,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
               </div>
             </div>
 
+            {/* Field Filter */}
             <div className="flex flex-col">
               <label className="text-white text-xl mb-2">Field</label>
               <div className="space-y-2">
@@ -143,7 +117,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={field}
                     onClick={() => toggleFilter("field", field)}
-                    className={`w-full py-2 px-4 rounded ${
+                    className={`w-full py-2 px-4  ${
                       filters.field.includes(field)
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
@@ -163,7 +137,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={tech}
                     onClick={() => toggleFilter("tech", tech)}
-                    className={`w-full py-2 px-4 rounded ${
+                    className={`w-full py-2 px-4  ${
                       filters.tech.includes(tech)
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
@@ -183,7 +157,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={progress}
                     onClick={() => toggleFilter("progress", progress)}
-                    className={`w-full py-2 px-4 rounded ${
+                    className={`w-full py-2 px-4  ${
                       filters.progress === progress
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"
@@ -203,7 +177,7 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
                   <button
                     key={association}
                     onClick={() => toggleFilter("association", association)}
-                    className={`w-full py-2 px-4 rounded ${
+                    className={`w-full py-2 px-4  ${
                       filters.association === association
                         ? `${primaryColor} text-white`
                         : "bg-gray-600 text-gray-300"

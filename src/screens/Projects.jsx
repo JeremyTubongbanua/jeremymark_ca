@@ -2,14 +2,39 @@ import React, { useState, useEffect } from "react";
 import ProjectsFilter from "../components/ProjectsFilter";
 import ProjectsGrid from "../components/ProjectsGrid";
 import yaml from "js-yaml";
+import {
+  LANGUAGE_OPTIONS,
+  TECH_OPTIONS,
+  FIELD_OPTIONS,
+  ASSOCIATION_OPTIONS,
+  PROGRESS_OPTIONS
+} from "../constants";
 
 const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [allProjects, setAllProjects] = useState([]); // Store all projects
 
   useEffect(() => {
+    const validateTag = (tag, category, projectId) => {
+      const isValid = {
+        language: LANGUAGE_OPTIONS.includes(tag),
+        field: FIELD_OPTIONS.includes(tag),
+        tech: TECH_OPTIONS.includes(tag),
+        association: ASSOCIATION_OPTIONS.includes(tag),
+        progress: PROGRESS_OPTIONS.includes(tag),
+      }[category];
+
+      if (!isValid) {
+        console.error(
+          `Project ID ${projectId}: Tag "${tag}" in category "${category}" is not valid.`
+        );
+      }
+    };
+
     const loadProjectData = async () => {
-      const projectIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]; // Add more project IDs here
+      const projectIds = [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26
+      ]; // Add more project IDs here
 
       const loadedProjects = await Promise.all(
         projectIds.map(async (projectId) => {
@@ -21,14 +46,27 @@ const Projects = () => {
           // Parse the YAML content
           const metadata = yaml.load(text);
 
-          // Create the tags array from the metadata
+          // Validate and create the tags array from the metadata
           const tags = [
-            ...metadata.languages.map((lang) => ({ name: lang, category: "language" })),
-            ...metadata.field.map((field) => ({ name: field, category: "field" })),
-            ...metadata.tech.map((tech) => ({ name: tech, category: "tech" })),
+            ...metadata.languages.map((lang) => {
+              validateTag(lang, "language", projectId);
+              return { name: lang, category: "language" };
+            }),
+            ...metadata.field.map((field) => {
+              validateTag(field, "field", projectId);
+              return { name: field, category: "field" };
+            }),
+            ...metadata.tech.map((tech) => {
+              validateTag(tech, "tech", projectId);
+              return { name: tech, category: "tech" };
+            }),
             { name: metadata.association, category: "association" },
             { name: metadata.progress, category: "progress" },
           ];
+
+          // Validate single tags
+          validateTag(metadata.association, "association", projectId);
+          validateTag(metadata.progress, "progress", projectId);
 
           // Create the project object using the metadata
           return {
