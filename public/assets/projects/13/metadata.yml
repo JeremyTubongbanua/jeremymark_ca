@@ -1,0 +1,12 @@
+title: "Cryptomon"
+subtitle: "Gamifying Crypto for the Laman"
+date: "2021-05-16"
+languages: ["JavaScript", "Python", "C", "C++", "Dart", "Java", "HTML/CSS", "MySQL", ]
+type: ["Embedded", "UI", "React", "Flutter", "Espressif (ESP-IDF)", "Arduino", "Robotics", "Electrical Engineering", "Fusion360"]
+progress: "Finished"
+association: "Hobby"
+
+# const LANGUAGE_OPTIONS = ["C", "C++", "Dart"];
+# const TYPE_OPTIONS = ["Embedded", "UI"];
+# const PROGRESS_OPTIONS = ["In-Progress", "Finished"];
+# const ASSOCIATION_OPTIONS = ["Ontario Tech", "Atsign", "Hobby"]; // Updated "Side-project" to "Hobby"
