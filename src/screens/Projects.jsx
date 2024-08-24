@@ -10,7 +10,7 @@ const Projects = () => {
   useEffect(() => {
     const loadProjectData = async () => {
       // Example of loading multiple projects, replace with dynamic loading if necessary
-      const projectIds = [1, 2]; // Add more project IDs here
+      const projectIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]; // Add more project IDs here
 
       const loadedProjects = await Promise.all(
         projectIds.map(async (projectId) => {
@@ -27,9 +27,9 @@ const Projects = () => {
             id: projectId,
             title: metadata.title,
             subtitle: metadata.subtitle,
+            description: metadata.description,
             date: new Date(metadata.date), // Convert to Date object for sorting
             imageSrc: `/assets/projects/${projectId}/thumbnail.png`,
-            altText: metadata.title,
           };
         })
       );

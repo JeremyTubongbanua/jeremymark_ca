@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
 // Define filter options as constants
-const LANGUAGE_OPTIONS = ["C", "C++", "Dart"];
-const TYPE_OPTIONS = ["Embedded", "UI"];
+const LANGUAGE_OPTIONS = ["C", "C++", "Dart", "JavaScript", "Python", "Java"];
+const FIELD_OPTIONS = ["Embedded", "UI/UX", "Networking", "DevOps", "Data Science", "AI/ML", "Robotics", "Electrical Engineering"];
+const TECH_OPTIONS = ["React", "Vite", "Espressif (ESP-IDF)", "Fusion360", "KiCad", "CMake", "Flutter"]
 const PROGRESS_OPTIONS = ["In-Progress", "Finished"];
-const ASSOCIATION_OPTIONS = ["Ontario Tech", "Atsign", "Hobby"]; // Updated "Side-project" to "Hobby"
+const ASSOCIATION_OPTIONS = ["Hobby", "High School", "Ontario Tech", "Atsign", "Hobby"];
+
 
 function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
   const [filters, setFilters] = useState({
@@ -129,11 +131,10 @@ function ProjectsFilter({ onFilterChange, primaryColor = "bg-blue-500" }) {
               </div>
             </div>
 
-            {/* Type Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-xl mb-2">Type</label>
+              <label className="text-white text-xl mb-2">Field</label>
               <div className="space-y-2">
-                {TYPE_OPTIONS.map((type) => (
+                {FIELD_OPTIONS.map((type) => (
                   <button
                     key={type}
                     onClick={() => toggleFilter("type", type)}
