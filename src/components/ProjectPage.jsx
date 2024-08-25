@@ -10,6 +10,8 @@ const ProjectPage = () => {
   const { projectId } = useParams();
   const [content, setContent] = useState("");
   const [galleryImages, setGalleryImages] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const loadContent = async () => {
@@ -69,6 +71,16 @@ const ProjectPage = () => {
     ],
   };
 
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
+
   return (
     <div className="container mx-auto p-8">
       <div
@@ -92,11 +104,12 @@ const ProjectPage = () => {
             <div
               key={index}
               className="relative w-full h-[500px] flex items-center justify-center bg-purple-500"
+              onClick={() => openModal(image)} // Open modal on image click
             >
               <img
                 src={`/assets/projects/${projectId}/gallery/${image}`}
                 alt={`Gallery Image ${index + 1}`}
-                className="mx-auto object-contain max-h-full max-w-full h-[500px]"
+                className="mx-auto object-contain max-h-full max-w-full h-[500px] cursor-pointer"
               />
             </div>
           ))}
@@ -127,6 +140,28 @@ const ProjectPage = () => {
           {content}
         </ReactMarkdown>
       </div>
+
+      {/* Modal for larger image preview */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          onClick={closeModal}
+        >
+          <div className="relative">
+            <img
+              src={`/assets/projects/${projectId}/gallery/${selectedImage}`}
+              alt="Selected"
+              className="max-h-screen max-w-screen"
+            />
+            <button
+              className="absolute top-2 right-2 bg-white text-black font-bold px-2 py-1 rounded"
+              onClick={closeModal}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
