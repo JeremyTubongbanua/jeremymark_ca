@@ -155,3 +155,9 @@ This mod holds the feet in place. Creality poorly designed this and expected us 
 This mod lets you remove your PTFE tube from the cable chain but still keep it in place to help guide the PTFE tube to the tool head.
 
 [Printables Link](https://www.printables.com/model/533733-k1-max-bowden-tube-clips)
+
+## Capricorn Bowden PTFE Tube
+
+I bought this better capcricorn PTFE tube. It changes size from heat less and is more slippery than the stock PTFE tube, allowing filament to flow easier.
+
+[Link](https://www.amazon.ca/dp/B086YPDHMF?ref=ppx_yo2ov_dt_b_fed_asin_title)
