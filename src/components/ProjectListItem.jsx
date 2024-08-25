@@ -11,7 +11,7 @@ function ProjectListItem({
   tags,
 }) {
   return (
-    <div className="bg-black p-4 shadow-lg flex flex-col items-start">
+    <div className="bg-black p-4 shadow-lg flex flex-col items-start min-h-[400px]">
       <div className="w-full mb-2">
         <img
           src={imageSrc}
@@ -20,7 +20,7 @@ function ProjectListItem({
         />
       </div>
 
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center w-full mb-2">
         <h2
           className={`text-3xl font-bold text-white w-full ${
             title.length > 20 ? "text-2xl" : "text-3xl"
@@ -28,16 +28,18 @@ function ProjectListItem({
         >
           {title}
         </h2>
-        <div
-          className={`bg-yellow-400 text-black font-semibold px-2 ${
-            title.length > 20 ? "text-xs" : "text-sm"
-          } ml-2`}
-        >
-          {subtitle}
-        </div>
+        {subtitle && (
+          <div
+            className={`bg-yellow-400 text-black font-semibold px-2 ${
+              title.length > 20 ? "text-xs" : "text-sm"
+            } ml-2`}
+          >
+            {subtitle}
+          </div>
+        )}
       </div>
 
-      <div className="mt-2">
+      <div className="flex-1">
         <p className="text-sm text-gray-400">{description}</p>
       </div>
 

@@ -10,8 +10,6 @@ const ProjectPage = () => {
   const { projectId } = useParams();
   const [content, setContent] = useState("");
   const [galleryImages, setGalleryImages] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
     const loadContent = async () => {
@@ -71,16 +69,6 @@ const ProjectPage = () => {
     ],
   };
 
-  const openModal = (image) => {
-    setSelectedImage(image);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage("");
-  };
-
   return (
     <div className="container mx-auto p-8">
       <div
@@ -101,63 +89,44 @@ const ProjectPage = () => {
         </h2>
         <Slider {...sliderSettings}>
           {galleryImages.map((image, index) => (
-            <div key={index} onClick={() => openModal(image)}>
+            <div
+              key={index}
+              className="relative w-full h-[500px] flex items-center justify-center bg-purple-500"
+            >
               <img
                 src={`/assets/projects/${projectId}/gallery/${image}`}
                 alt={`Gallery Image ${index + 1}`}
-                className="w-auto max-h-[500px] h-auto object-cover mx-auto cursor-pointer"
+                className="mx-auto object-contain max-h-full max-w-full h-[500px]"
               />
             </div>
           ))}
         </Slider>
       </div>
 
-      <div className="p-4 shadow-lg">
+      <div className="p-4 rounded shadow-md mt-8">
         <ReactMarkdown
           rehypePlugins={[rehypeRaw]}
           components={{
             h1: ({ node, ...props }) => (
-              <h1 className="text-4xl font-bold mb-4" {...props} />
+              <h1 className="font-inter text-8xl font-bold mb-4" {...props} />
             ),
             h2: ({ node, ...props }) => (
-              <h2 className="text-3xl font-semibold mb-3" {...props} />
+              <h2 className="font-inter text-4xl font-semibold mb-3" {...props} />
             ),
             p: ({ node, ...props }) => (
-              <p className="text-lg mb-2" {...props} />
+              <p className="font-inter text-lg mb-2" {...props} />
             ),
             a: ({ node, ...props }) => (
-              <a className="text-lg text-blue-500 underline" {...props} />
+              <a className="font-inter text-lg text-blue-500 underline" {...props} />
             ),
             li: ({ node, ...props }) => (
-              <li className="text-lg list-disc ml-5 mb-1" {...props} />
+              <li className="font-inter text-lg list-disc ml-5 mb-1" {...props} />
             ),
           }}
         >
           {content}
         </ReactMarkdown>
       </div>
-
-      {/* Modal for large image preview */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
-          onClick={closeModal}
-        >
-          <div className="relative p-4 max-w-5xl w-full">
-            <img
-              src={`/assets/projects/${projectId}/gallery/${selectedImage}`}
-              alt="Large Preview"
-              className="w-auto h-300 object-contain"
-            />
-            <button
-              className="absolute top-0 right-0 m-4 text-white text-3xl font-bold"
-              onClick={closeModal}
-            >
-              &times;
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

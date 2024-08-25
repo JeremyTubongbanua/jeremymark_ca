@@ -1,4 +1,4 @@
-/* global.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
   --primary-color: #482F9D;
@@ -15,4 +15,3 @@ body {
   color: var(--text-color);
 }
 
-/* Additional global styles can go here */

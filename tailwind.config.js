@@ -19,7 +19,7 @@ export default {
             144: "36rem",
          },
          fontSize: {
-            "5xl": ["3rem", { lineHeight: "1.2" }],
+            "4xl": ["3rem", { lineHeight: "1.2" }],
          },
          borderRadius: {
             lg: "1rem",
@@ -40,6 +40,7 @@ export default {
          },
          fontFamily: {
             jockey: ["Jockey One", "sans-serif"],
+            inter: ["Inter", "sans-serif"],
          },
       },
    },
