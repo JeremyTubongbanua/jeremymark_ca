@@ -46,7 +46,7 @@ const ProjectPage = () => {
 
   const sliderSettings = {
     dots: true,
-    infinite: true,
+    infinite: galleryImages.length > 1, // Only enable infinite if there are more than one images
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -124,16 +124,25 @@ const ProjectPage = () => {
               <h1 className="font-inter text-8xl font-bold mb-4" {...props} />
             ),
             h2: ({ node, ...props }) => (
-              <h2 className="font-inter text-4xl font-semibold mb-3" {...props} />
+              <h2
+                className="font-inter text-4xl font-semibold mb-3"
+                {...props}
+              />
             ),
             p: ({ node, ...props }) => (
               <p className="font-inter text-lg mb-2" {...props} />
             ),
             a: ({ node, ...props }) => (
-              <a className="font-inter text-lg text-blue-500 underline" {...props} />
+              <a
+                className="font-inter text-lg text-blue-500 underline"
+                {...props}
+              />
             ),
             li: ({ node, ...props }) => (
-              <li className="font-inter text-lg list-disc ml-5 mb-1" {...props} />
+              <li
+                className="font-inter text-lg list-disc ml-5 mb-1"
+                {...props}
+              />
             ),
           }}
         >
