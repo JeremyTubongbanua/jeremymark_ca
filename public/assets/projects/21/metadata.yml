@@ -3,7 +3,7 @@ subtitle: "CES 2024 Booth Demo"
 description: "Joint IoT demo with Qt and Atsign demonstrating secure plant IoT monitoring"
 date: "2024-01-10"
 languages: ["Python"]
-field: ["IoT/Embedded", "Robotics"]
+field: ["3D Printing", "IoT/Embedded", "Robotics"]
 tech: ["Fusion360", "Linux"]
 progress: "Finished"
 association: "Atsign"
