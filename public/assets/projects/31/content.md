@@ -98,6 +98,8 @@ This mod rises the lid so that the lid doesn't hit the PTFE tube. This is a comm
 
 This mod is for the between parts of the lid riser. I printed 2 sets; 1 set with hexgons and 1 set that is flat and filled. I use the first set when printing with filaments that need more cooling like PLA and the second set when printing with filaments that need a warm enclosure.
 
+![Image](https://i.imgur.com/IEodyWC.png)
+
 I made [my own remix](https://www.printables.com/model/910819-remix-of-rear-betweeners-for-jck1-lid-riser) of the rear betweener because  the original did not fit my needs, and I no longer needed a bigger gap for the PTFE tube since it was going through the side.
 
 The other betweeners came with the original [printables link](https://www.printables.com/model/770238-creality-k1k1c-hinged-lid-riser) with the risers.
