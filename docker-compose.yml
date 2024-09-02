@@ -10,4 +10,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    restart: "no"
+    volumes:
+      - /etc/letsencrypt/live/jeremymark.ca/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
+      - /etc/letsencrypt/live/jeremymark.ca/privkey.pem:/etc/ssl/private/privkey.pem:ro
