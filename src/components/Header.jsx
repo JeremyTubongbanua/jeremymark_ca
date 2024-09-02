@@ -22,9 +22,6 @@ function Header() {
               <Link to="/about">ABOUT</Link>
             </li>
             <li className="hover:text-blue-300">
-              <Link to="/resume">RESUME</Link>
-            </li>
-            <li className="hover:text-blue-300">
               <Link to="/projects">PROJECTS</Link>
             </li>
             <li className="hover:text-blue-300">
@@ -44,9 +41,6 @@ function Header() {
           <ul className="lg:hidden flex flex-col space-y-2 px-4 py-2 bg-secondary-100">
             <li className="hover:text-blue-300">
               <Link to="/about" onClick={toggleMobileMenu}>ABOUT</Link>
-            </li>
-            <li className="hover:text-blue-300">
-              <Link to="/resume" onClick={toggleMobileMenu}>RESUME</Link>
             </li>
             <li className="hover:text-blue-300">
               <Link to="/projects" onClick={toggleMobileMenu}>PROJECTS</Link>

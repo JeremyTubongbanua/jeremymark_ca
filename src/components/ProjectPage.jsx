@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import Slider from "react-slick";
@@ -12,6 +12,7 @@ const ProjectPage = () => {
   const [galleryImages, setGalleryImages] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const loadContent = async () => {
@@ -83,6 +84,14 @@ const ProjectPage = () => {
 
   return (
     <div className="container mx-auto p-4 sm:p-8">
+      {/* Back Button */}
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
+        onClick={() => navigate(-1)} // Navigate back to the previous page
+      >
+        Back
+      </button>
+
       <div
         className="relative w-full h-48 sm:h-64 bg-cover bg-center"
         style={{

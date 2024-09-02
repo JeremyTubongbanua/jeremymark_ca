@@ -50,6 +50,19 @@ function About() {
             />
             jeremy.tubongbanua@gmail.com
           </a>
+          <a
+            href="/assets/JeremyTubongbanua_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white flex items-center text-base sm:text-lg md:text-xl"
+          >
+            <img
+              src={"/assets/pdf_icon.png"}
+              alt="Resume"
+              className="w-5 h-5 sm:w-6 sm:h-6 mr-3 object-cover"
+            />
+            Resume
+          </a>
         </div>
       </div>
       <div className="mt-8 md:mt-0 md:ml-8 animate-slideIn w-full max-w-sm sm:max-w-md md:max-w-2xl">
