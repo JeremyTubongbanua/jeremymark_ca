@@ -1,6 +1,6 @@
 import React from "react";
 import { getTagColor } from "../utils/tagColors";
-import { format, differenceInDays, isValid, parseISO } from "date-fns";
+import { format, differenceInDays, isValid, parseISO, differenceInYears, differenceInMonths } from "date-fns";
 
 function ExperienceListItem({
   title,
@@ -40,9 +40,16 @@ function ExperienceListItem({
       return `${from} (1 day)`;
     }
 
-    // General case
-    const totalDays = differenceInDays(endDate, startDate) + 1; // +1 to include both start and end dates
-    return `${from} - ${to} (${totalDays} days)`;
+    // Calculate the difference in years and months
+    const totalYears = differenceInYears(endDate, startDate);
+    const totalMonths = differenceInMonths(endDate, startDate) % 12;
+
+    // Format the duration
+    const duration = `${totalYears > 0 ? `${totalYears} yr${totalYears > 1 ? 's' : ''}` : ''}${
+      totalYears > 0 && totalMonths > 0 ? ', ' : ''
+    }${totalMonths > 0 ? `${totalMonths} mo` : ''}`;
+
+    return `${from} - ${to} (${duration})`;
   };
 
   return (
