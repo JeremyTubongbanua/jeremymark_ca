@@ -27,8 +27,10 @@ const ExperiencesGrid = ({ experiences }) => {
         .sort((a, b) => (a === presentYear ? -1 : b === presentYear ? 1 : b - a))
         .map((year) => (
           <div key={year} className="mb-8">
-            <h2 className="text-3xl font-bold text-white mb-4">{year}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              {year}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {experiencesByYear[year]
                 .sort((a, b) => {
                   const dateA = new Date(b.todate || b.fromdate);

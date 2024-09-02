@@ -82,65 +82,65 @@ const ProjectPage = () => {
   };
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto p-4 sm:p-8">
       <div
-        className="relative w-full h-64 bg-cover bg-center"
+        className="relative w-full h-48 sm:h-64 bg-cover bg-center"
         style={{
           backgroundImage: `url(/assets/projects/${projectId}/thumbnail.png)`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
-        <h1 className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-white">
+        <h1 className="absolute inset-0 flex items-center justify-center text-2xl sm:text-4xl font-bold text-white">
           {content.split("\n")[0].replace("#", "").trim()}
         </h1>
       </div>
 
-      <div className="bg-purple-400 py-8">
-        <h2 className="text-3xl text-center font-bold text-white mb-4">
+      <div className="bg-purple-400 py-6 sm:py-8">
+        <h2 className="text-2xl sm:text-3xl text-center font-bold text-white mb-4">
           Gallery
         </h2>
         <Slider {...sliderSettings}>
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className="relative w-full h-[500px] flex items-center justify-center bg-purple-500"
+              className="relative w-full h-64 sm:h-[500px] flex items-center justify-center bg-purple-500"
               onClick={() => openModal(image)} // Open modal on image click
             >
               <img
                 src={`/assets/projects/${projectId}/gallery/${image}`}
                 alt={`Gallery Image ${index + 1}`}
-                className="mx-auto object-contain max-h-full max-w-full h-[500px] cursor-pointer"
+                className="mx-auto object-contain max-h-full max-w-full cursor-pointer"
               />
             </div>
           ))}
         </Slider>
       </div>
 
-      <div className="p-4 rounded shadow-md mt-8">
+      <div className="p-4 sm:p-4 rounded shadow-md mt-8">
         <ReactMarkdown
           rehypePlugins={[rehypeRaw]}
           components={{
             h1: ({ node, ...props }) => (
-              <h1 className="font-inter text-8xl font-bold mb-4" {...props} />
+              <h1 className="font-inter text-4xl sm:text-8xl font-bold mb-4" {...props} />
             ),
             h2: ({ node, ...props }) => (
               <h2
-                className="font-inter text-4xl font-semibold mb-3"
+                className="font-inter text-2xl sm:text-4xl font-semibold mb-3"
                 {...props}
               />
             ),
             p: ({ node, ...props }) => (
-              <p className="font-inter text-lg mb-2" {...props} />
+              <p className="font-inter text-base sm:text-lg mb-2" {...props} />
             ),
             a: ({ node, ...props }) => (
               <a
-                className="font-inter text-lg text-blue-500 underline"
+                className="font-inter text-base sm:text-lg text-blue-500 underline"
                 {...props}
               />
             ),
             li: ({ node, ...props }) => (
               <li
-                className="font-inter text-lg list-disc ml-5 mb-1"
+                className="font-inter text-base sm:text-lg list-disc ml-5 mb-1"
                 {...props}
               />
             ),

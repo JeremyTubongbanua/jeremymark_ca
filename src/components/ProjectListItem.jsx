@@ -16,14 +16,14 @@ function ProjectListItem({
         <img
           src={imageSrc}
           alt={altText}
-          className="w-full h-40 object-cover"
+          className="w-full h-32 sm:h-40 object-cover"
         />
       </div>
 
       <div className="flex justify-between items-center w-full mb-2">
         <h2
-          className={`text-3xl font-bold text-white w-full ${
-            title.length > 20 ? "text-2xl" : "text-3xl"
+          className={`text-lg sm:text-3xl font-bold text-white w-full ${
+            title.length > 20 ? "text-base sm:text-2xl" : "text-lg sm:text-3xl"
           }`}
         >
           {title}
@@ -40,17 +40,14 @@ function ProjectListItem({
       </div>
 
       <div className="flex-1">
-        <p className="text-sm text-gray-400">{description}</p>
+        <p className="text-xs sm:text-sm text-gray-400">{description}</p>
       </div>
 
-      {/* Tag Collection */}
       <div className="mt-4 flex flex-wrap gap-1">
         {tags.map((tag, index) => (
           <span
             key={index}
-            className={`text-xs px-1 py-0.5 rounded ${getTagColor(
-              tag.category
-            )}`}
+            className={`text-xs px-1 py-0.5 rounded ${getTagColor(tag.category)}`}
           >
             {tag.name}
           </span>

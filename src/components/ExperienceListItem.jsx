@@ -51,22 +51,22 @@ function ExperienceListItem({
         <img
           src={imageSrc}
           alt={altText}
-          className="w-full h-40 object-cover"
+          className="w-full h-32 sm:h-40 object-cover"
         />
       </div>
 
       <div className="flex justify-between items-center w-full mb-2">
-        <h2 className="text-xl font-bold text-white">{title}</h2>
-        <div className="text-sm text-gray-400 ml-4">{formatDateRange(fromdate, todate)}</div>
+        <h2 className="text-lg sm:text-xl font-bold text-white">{title}</h2>
+        <div className="text-sm sm:text-base text-gray-400 ml-4">{formatDateRange(fromdate, todate)}</div>
       </div>
 
-      <div className="text-sm text-gray-400 mb-2">{description}</div>
+      <div className="text-xs sm:text-sm text-gray-400 mb-2">{description}</div>
 
       <div className="flex flex-wrap gap-1">
         {tags.map((tag, index) => (
           <span
             key={index}
-            className={`text-xs px-2 py-1 rounded ${getTagColor(tag.category)}`}
+            className={`text-xs sm:text-xs px-2 py-1 rounded ${getTagColor(tag.category)}`}
           >
             {tag.name}
           </span>

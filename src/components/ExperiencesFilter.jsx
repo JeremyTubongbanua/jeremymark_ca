@@ -67,19 +67,19 @@ function ExperiencesFilter({ onFilterChange }) {
   };
 
   return (
-    <div className="bg-gray-800 p-6 shadow-lg">
+    <div className="bg-gray-800 p-4 sm:p-6 shadow-lg">
       <div className="mb-4 flex justify-between items-center">
-        <h2 className="text-2xl text-white">Filter Experiences</h2>
+        <h2 className="text-xl sm:text-2xl text-white">Filter Experiences</h2>
         <div className="flex space-x-2">
           <button
             onClick={handleClearFilters}
-            className="text-white text-xl bg-red-500 py-2 px-4"
+            className="text-white text-lg sm:text-xl bg-red-500 py-2 px-4"
           >
             Clear
           </button>
           <button
             onClick={toggleVisibility}
-            className="text-white text-xl bg-gray-700 py-2 px-4"
+            className="text-white text-lg sm:text-xl bg-gray-700 py-2 px-4"
           >
             {isVisible ? "Hide" : "Show"}
           </button>
@@ -96,13 +96,13 @@ function ExperiencesFilter({ onFilterChange }) {
               value={filters.search}
               onChange={handleSingleSelectChange}
               placeholder="SEARCH"
-              className="w-full p-4 bg-gray-300 text-gray-800 text-2xl"
+              className="w-full p-3 sm:p-4 bg-gray-300 text-gray-800 text-lg sm:text-2xl"
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
             <div className="flex flex-col">
-              <label className="text-white text-xl mb-2">Roles</label>
+              <label className="text-lg sm:text-xl text-white mb-2">Roles</label>
               <div className="space-y-2">
                 {ROLE_OPTIONS.map((role) => (
                   <button
@@ -112,7 +112,7 @@ function ExperiencesFilter({ onFilterChange }) {
                       filters.roles.includes(role)
                         ? `${getTagColor("roles")} text-white`
                         : "bg-gray-600 text-gray-300"
-                    } text-lg`}
+                    } text-sm sm:text-lg`}
                   >
                     {role}
                   </button>
@@ -121,7 +121,7 @@ function ExperiencesFilter({ onFilterChange }) {
             </div>
 
             <div className="flex flex-col">
-              <label className="text-white text-xl mb-2">Industries</label>
+              <label className="text-lg sm:text-xl text-white mb-2">Industries</label>
               <div className="space-y-2">
                 {INDUSTRY_OPTIONS.map((industry) => (
                   <button
@@ -131,7 +131,7 @@ function ExperiencesFilter({ onFilterChange }) {
                       filters.industries.includes(industry)
                         ? `${getTagColor("industries")} text-white`
                         : "bg-gray-600 text-gray-300"
-                    } text-lg`}
+                    } text-sm sm:text-lg`}
                   >
                     {industry}
                   </button>

@@ -18,7 +18,6 @@ function ProjectsFilter({ onFilterChange }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    // Update the filters based on URL query parameters
     setFilters({
       search: searchParams.get("search") || "",
       languages: searchParams.get("languages")?.split(",") || [],
@@ -28,7 +27,6 @@ function ProjectsFilter({ onFilterChange }) {
       association: searchParams.get("association") || "",
     });
 
-    // Set the visibility state based on the URL parameter
     const visibilityParam = searchParams.get("filtersVisible");
     setIsVisible(visibilityParam !== "false");
   }, [searchParams]);
@@ -36,8 +34,6 @@ function ProjectsFilter({ onFilterChange }) {
   const toggleVisibility = () => {
     const newVisibility = !isVisible;
     setIsVisible(newVisibility);
-
-    // Update the URL with the new visibility state
     searchParams.set("filtersVisible", newVisibility);
     setSearchParams(searchParams);
   };
@@ -46,17 +42,14 @@ function ProjectsFilter({ onFilterChange }) {
     setFilters((prev) => {
       let newFilters;
       if (name === "progress" || name === "association") {
-        // Ensure only one progress or association filter is selected at a time
         newFilters = { ...prev, [name]: prev[name] === value ? "" : value };
       } else {
         const isActive = prev[name].includes(value);
         const newValues = isActive
           ? prev[name].filter((item) => item !== value)
           : [...prev[name], value];
-
         newFilters = { ...prev, [name]: newValues };
       }
-
       onFilterChange(newFilters);
       return newFilters;
     });
@@ -77,19 +70,19 @@ function ProjectsFilter({ onFilterChange }) {
   };
 
   return (
-    <div className="bg-gray-800 p-6 shadow-lg">
+    <div className="bg-gray-800 p-4 sm:p-6 shadow-lg">
       <div className="mb-4 flex justify-between items-center">
-        <h2 className="text-2xl text-white">Filter Projects</h2>
+        <h2 className="text-xl sm:text-2xl text-white">Filter Projects</h2>
         <div className="flex space-x-2">
           <button
             onClick={handleClearFilters}
-            className="text-white text-xl bg-red-500 py-2 px-4"
+            className="text-white text-lg sm:text-xl bg-red-500 py-2 px-4"
           >
             Clear
           </button>
           <button
             onClick={toggleVisibility}
-            className="text-white text-xl bg-gray-700 py-2 px-4"
+            className="text-white text-lg sm:text-xl bg-gray-700 py-2 px-4"
           >
             {isVisible ? "Hide" : "Show"}
           </button>
@@ -106,14 +99,14 @@ function ProjectsFilter({ onFilterChange }) {
               value={filters.search}
               onChange={handleSingleSelectChange}
               placeholder="SEARCH"
-              className="w-full p-4 bg-gray-300 text-gray-800 text-2xl"
+              className="w-full p-4 bg-gray-300 text-gray-800 text-lg sm:text-2xl"
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6">
             {/* Languages Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-xl mb-2">Languages</label>
+              <label className="text-white text-lg sm:text-xl mb-2">Languages</label>
               <div className="space-y-2">
                 {LANGUAGE_OPTIONS.map((lang) => (
                   <button
@@ -123,7 +116,7 @@ function ProjectsFilter({ onFilterChange }) {
                       filters.languages.includes(lang)
                         ? `${getTagColor("language")} text-white`
                         : "bg-gray-600 text-gray-300"
-                    } text-lg`}
+                    } text-sm sm:text-lg`}
                   >
                     {lang}
                   </button>
@@ -133,7 +126,7 @@ function ProjectsFilter({ onFilterChange }) {
 
             {/* Field Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-xl mb-2">Field</label>
+              <label className="text-white text-lg sm:text-xl mb-2">Field</label>
               <div className="space-y-2">
                 {FIELD_OPTIONS.map((field) => (
                   <button
@@ -143,7 +136,7 @@ function ProjectsFilter({ onFilterChange }) {
                       filters.field.includes(field)
                         ? `${getTagColor("field")} text-white`
                         : "bg-gray-600 text-gray-300"
-                    } text-lg`}
+                    } text-sm sm:text-lg`}
                   >
                     {field}
                   </button>
@@ -153,7 +146,7 @@ function ProjectsFilter({ onFilterChange }) {
 
             {/* Tech Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-xl mb-2">Tech</label>
+              <label className="text-white text-lg sm:text-xl mb-2">Tech</label>
               <div className="space-y-2">
                 {TECH_OPTIONS.map((tech) => (
                   <button
@@ -163,7 +156,7 @@ function ProjectsFilter({ onFilterChange }) {
                       filters.tech.includes(tech)
                         ? `${getTagColor("tech")} text-white`
                         : "bg-gray-600 text-gray-300"
-                    } text-lg`}
+                    } text-sm sm:text-lg`}
                   >
                     {tech}
                   </button>
@@ -173,7 +166,7 @@ function ProjectsFilter({ onFilterChange }) {
 
             {/* Progress Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-xl mb-2">Progress</label>
+              <label className="text-white text-lg sm:text-xl mb-2">Progress</label>
               <div className="space-y-2">
                 {PROGRESS_OPTIONS.map((progress) => (
                   <button
@@ -183,7 +176,7 @@ function ProjectsFilter({ onFilterChange }) {
                       filters.progress === progress
                         ? `${getTagColor("progress")} text-white`
                         : "bg-gray-600 text-gray-300"
-                    } text-lg`}
+                    } text-sm sm:text-lg`}
                   >
                     {progress}
                   </button>
@@ -193,7 +186,7 @@ function ProjectsFilter({ onFilterChange }) {
 
             {/* Association Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-xl mb-2">Association</label>
+              <label className="text-white text-lg sm:text-xl mb-2">Association</label>
               <div className="space-y-2">
                 {ASSOCIATION_OPTIONS.map((association) => (
                   <button
@@ -203,7 +196,7 @@ function ProjectsFilter({ onFilterChange }) {
                       filters.association === association
                         ? `${getTagColor("association")} text-white`
                         : "bg-gray-600 text-gray-300"
-                    } text-lg`}
+                    } text-sm sm:text-lg`}
                   >
                     {association}
                   </button>
