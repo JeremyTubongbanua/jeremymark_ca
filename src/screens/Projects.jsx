@@ -9,7 +9,7 @@ import {
   FIELD_OPTIONS,
   ASSOCIATION_OPTIONS,
   PROGRESS_OPTIONS,
-  projectIds
+  projectIds,
 } from "../constants";
 
 const Projects = () => {
@@ -153,12 +153,12 @@ const Projects = () => {
     const params = new URLSearchParams();
 
     if (filters.search) params.set("search", filters.search);
-    filters.languages.forEach(lang => params.append("languages", lang));
-    filters.field.forEach(field => params.append("field", field));
-    filters.tech.forEach(tech => params.append("tech", tech));
+    filters.languages.forEach((lang) => params.append("languages", lang));
+    filters.field.forEach((field) => params.append("field", field));
+    filters.tech.forEach((tech) => params.append("tech", tech));
     if (filters.progress) params.set("progress", filters.progress);
     if (filters.association) params.set("association", filters.association);
-    
+
     params.set("filtersVisible", isVisible.toString());
 
     setSearchParams(params);
@@ -167,8 +167,10 @@ const Projects = () => {
   };
 
   return (
-    <div className="container mx-auto p-8">
-      <h1 className="text-4xl font-bold text-white mb-8">Projects</h1>
+    <div className="container mx-auto p-4 sm:p-8">
+      <h1 className="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8">
+        Projects
+      </h1>
       <ProjectsFilter
         primaryColor="bg-green-500"
         onFilterChange={handleFilterChange}
