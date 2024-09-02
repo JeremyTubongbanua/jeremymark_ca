@@ -1,6 +1,6 @@
 import React from "react";
 import { getTagColor } from "../utils/tagColors";
-import { format, differenceInMonths, isValid } from "date-fns";
+import { format, differenceInDays, isValid, parseISO } from "date-fns";
 
 function ExperienceListItem({
   title,
@@ -13,12 +13,12 @@ function ExperienceListItem({
   tags,
 }) {
   const formatDateRange = (fromdate, todate) => {
-    let startDate = fromdate ? new Date(fromdate) : null;
-    const endDate = todate && todate !== "" ? new Date(todate) : new Date();
+    let startDate = fromdate ? parseISO(fromdate) : null;
+    const endDate = todate && todate !== "" ? parseISO(todate) : new Date();
 
     // Handle the case where `fromdate` is blank and `todate` exists (1-day event)
     if (!fromdate && todate) {
-      startDate = new Date(todate); // Treat it as a one-day event
+      startDate = parseISO(todate); // Treat it as a one-day event
     }
 
     // Check if the dates are valid
@@ -32,25 +32,17 @@ function ExperienceListItem({
     }
 
     // Format the date range
-    const from = startDate ? format(startDate, "MMM yyyy") : format(endDate, "MMM yyyy");
-    const to = todate && todate !== "" ? format(endDate, "MMM yyyy") : "Present";
+    const from = startDate ? format(startDate, "MMM d, yyyy") : format(endDate, "MMM d, yyyy");
+    const to = todate && todate !== "" ? format(endDate, "MMM d, yyyy") : "Present";
 
     // Handle one-day events
-    if (!fromdate && todate) {
+    if (differenceInDays(endDate, startDate) === 0) {
       return `${from} (1 day)`;
     }
 
-    // Handle multi-day events in the same month and year
-    if (from === to) {
-      return `${from}`;
-    }
-
     // General case
-    const totalMonths = differenceInMonths(endDate, startDate);
-    const years = Math.floor(totalMonths / 12);
-    const months = totalMonths % 12;
-    const duration = `${years > 0 ? `${years} yr ` : ""}${months > 0 ? `${months} mo` : ""}`;
-    return `${from} - ${to} (${duration})`;
+    const totalDays = differenceInDays(endDate, startDate) + 1; // +1 to include both start and end dates
+    return `${from} - ${to} (${totalDays} days)`;
   };
 
   return (
