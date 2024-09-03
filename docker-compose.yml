@@ -1,6 +1,32 @@
 version: '3.8'
 
 services:
+  node:
+    build:
+      context: ./spotify/node
+    image: spotify_jeremymark_ca_node
+    container_name: spotify_jeremymark_ca_node
+    env_file:
+      - ./spotify/node/.env
+    expose:
+      - "3003"
+    networks:
+      - spotify-network
+  nginx:
+    build:
+      context: ./spotify/nginx
+    image: spotify_jeremymark_ca_nginx
+    container_name: spotify_jeremymark_ca_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - node
+    networks:
+      - spotify-network
+    volumes:
+      - /etc/letsencrypt/live/spotify.jeremymark.ca/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
+      - /etc/letsencrypt/live/spotify.jeremymark.ca/privkey.pem:/etc/ssl/private/privkey.pem:ro
   jeremymark_ca:
     build:
       context: .
@@ -13,3 +39,7 @@ services:
     volumes:
       - /etc/letsencrypt/live/jeremymark.ca/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
       - /etc/letsencrypt/live/jeremymark.ca/privkey.pem:/etc/ssl/private/privkey.pem:ro
+
+networks:
+  spotify-network:
+    driver: bridge
