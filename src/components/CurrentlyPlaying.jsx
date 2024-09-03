@@ -10,29 +10,37 @@ const CurrentlyPlaying = () => {
         const response = await fetch('https://spotify.jeremymark.ca/currently-playing');
         const data = await response.json();
         setTrack(data);
-        setProgress(data.progress_ms);  // Initialize progress
+        setProgress(data.progress_ms); // Initialize progress
       } catch (error) {
         console.error('Error fetching currently playing track:', error);
       }
     };
 
     fetchCurrentlyPlaying();
+
+    // Poll the API every 5 seconds to update the currently playing track
+    const interval = setInterval(fetchCurrentlyPlaying, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (!track || !track.item) return;
 
+    const start = Date.now();
     const interval = setInterval(() => {
       setProgress(prevProgress => {
-        if (prevProgress >= track.item.duration_ms) {
+        const elapsed = Date.now() - start;
+        const newProgress = track.progress_ms + elapsed;
+        if (newProgress >= track.item.duration_ms) {
           clearInterval(interval);
           return track.item.duration_ms;
         }
-        return prevProgress + 1000;  // Increment progress by 1000ms (1 second)
+        return newProgress;
       });
     }, 1000);
 
-    return () => clearInterval(interval);  // Cleanup interval on component unmount
+    return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [track]);
 
   if (!track || !track.item) {
@@ -55,15 +63,41 @@ const CurrentlyPlaying = () => {
         className="w-20 h-20 sm:w-32 sm:h-32 rounded-lg"
       />
       <div className="ml-4 flex-1">
-        <h2 className="text-white text-xl font-semibold">{`"${name}" by ${artists.map(artist => artist.name).join(', ')}`}</h2>
-        <a
-          href={external_urls.spotify}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-400 text-sm"
-        >
-          Listen on Spotify
-        </a>
+        <h2 className="text-white text-xl font-semibold">
+          <a
+            href={external_urls.spotify}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400"
+          >
+            "{name}"
+          </a>{' '}
+          by{' '}
+          {artists.map((artist, index) => (
+            <span key={artist.id}>
+              <a
+                href={artist.external_urls.spotify}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400"
+              >
+                {artist.name}
+              </a>
+              {index < artists.length - 1 && ', '}
+            </span>
+          ))}
+        </h2>
+        <p className="text-gray-400">
+          Album:{' '}
+          <a
+            href={album.external_urls.spotify}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400"
+          >
+            {album.name}
+          </a>
+        </p>
         <div className="mt-2 flex items-center">
           <div className="w-full h-1 bg-gray-700 rounded-full">
             <div
