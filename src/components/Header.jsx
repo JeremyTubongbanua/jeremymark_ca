@@ -12,7 +12,7 @@ function Header() {
     <header className="w-screen font-jockey bg-bg-100">
       <div className="px-4 py-4 lg:px-48">
         <h1 className="text-4xl font-bold mb-4 lg:text-5xl">
-          JEREMY MARK TUBONGBANUA
+          <Link to="/" className="hover:text-blue-300">JEREMY MARK TUBONGBANUA</Link>
         </h1>
       </div>
       <nav className="bg-secondary-100">
