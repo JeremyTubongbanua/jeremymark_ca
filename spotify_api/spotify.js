@@ -9,8 +9,8 @@ const app = express();
 
 // Use the cors middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow only requests from this origin
-    optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+    origin: 'https://jeremymark.ca',
+    optionsSuccessStatus: 200
 }));
 
 const client_id = process.env.CLIENT_ID;
