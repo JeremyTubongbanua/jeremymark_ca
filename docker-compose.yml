@@ -1,45 +1,47 @@
 version: '3.8'
 
 services:
-  node:
+  nginx_proxy:
     build:
-      context: ./spotify/node
-    image: spotify_jeremymark_ca_node
-    container_name: spotify_jeremymark_ca_node
-    env_file:
-      - ./spotify/node/.env
-    expose:
-      - "3003"
-    networks:
-      - spotify-network
-  nginx:
-    build:
-      context: ./spotify/nginx
-    image: spotify_jeremymark_ca_nginx
-    container_name: spotify_jeremymark_ca_nginx
+      context: ./nginx
+    image: nginx_proxy
+    container_name: nginx_proxy
     ports:
       - "80:80"
       - "443:443"
-    depends_on:
-      - node
-    networks:
-      - spotify-network
     volumes:
-      - /etc/letsencrypt/live/spotify.jeremymark.ca/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
-      - /etc/letsencrypt/live/spotify.jeremymark.ca/privkey.pem:/etc/ssl/private/privkey.pem:ro
+      - /etc/letsencrypt/live/jeremymark.ca/fullchain.pem:/etc/ssl/certs/jeremymark.ca/fullchain.pem:ro
+      - /etc/letsencrypt/live/jeremymark.ca/privkey.pem:/etc/ssl/private/jeremymark.ca/privkey.pem:ro
+      - /etc/letsencrypt/live/spotify.jeremymark.ca/fullchain.pem:/etc/ssl/certs/spotify.jeremymark.ca/fullchain.pem:ro
+      - /etc/letsencrypt/live/spotify.jeremymark.ca/privkey.pem:/etc/ssl/private/spotify.jeremymark.ca/privkey.pem:ro
+    depends_on:
+      - spotify_api
+      - jeremymark_ca
+    networks:
+      - net
+
+  spotify_api:
+    build:
+      context: ./spotify_api
+    image: spotify_api
+    container_name: spotify_api
+    env_file:
+      - ./spotify_api/.env
+    expose:
+      - "3002"
+    networks:
+      - net
+
   jeremymark_ca:
     build:
       context: .
-      dockerfile: Dockerfile
     image: jeremymark_ca
     container_name: jeremymark_ca
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /etc/letsencrypt/live/jeremymark.ca/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
-      - /etc/letsencrypt/live/jeremymark.ca/privkey.pem:/etc/ssl/private/privkey.pem:ro
+    expose:
+      - "3001"
+    networks:
+      - net
 
-networks:
-  spotify-network:
+networks: 
+  net:
     driver: bridge

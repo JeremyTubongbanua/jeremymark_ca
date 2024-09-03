@@ -1,3 +1,4 @@
+# Nginx Dockerfile for reverse proxy
 FROM nginx:alpine
 
 WORKDIR /etc/nginx

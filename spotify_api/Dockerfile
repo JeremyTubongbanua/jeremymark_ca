@@ -1,3 +1,4 @@
+# Node.js API Dockerfile
 FROM node:18-alpine
 
 WORKDIR /app
@@ -7,6 +8,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3003
+EXPOSE 3002
 
 CMD ["npm", "run", "start"]

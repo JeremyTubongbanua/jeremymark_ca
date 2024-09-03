@@ -63,6 +63,6 @@ app.get('/currently-playing', async (req, res) => {
 });
 
 // Start the server
-app.listen(3003, () => {
-    console.log('Server listening on port 3003');
+app.listen(3002, () => {
+    console.log('Server listening on port 3002');
 });
