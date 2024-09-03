@@ -3,7 +3,7 @@ import CurrentlyPlaying from "../components/CurrentlyPlaying";
 
 function About() {
   return (
-    <div className="min-h-screen flex flex-col items-center p-8">
+    <div className="min-h-screen flex flex-col items-center p-24">
       <div className="flex flex-col md:flex-row items-center justify-center max-w-5xl space-y-8 md:space-y-0 md:space-x-8">
         <div className="flex flex-col items-start max-w-lg">
           <h2 className="text-4xl sm:text-6xl md:text-9xl font-bold text-white mb-6">
