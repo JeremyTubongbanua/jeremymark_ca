@@ -9,7 +9,7 @@ const app = express();
 
 // Use the cors middleware
 app.use(cors({
-    origin: 'https://jeremymark.ca',
+    origin: ['https://jeremymark.ca', 'http://jeremymark.ca', 'http://localhost:5173'],
     optionsSuccessStatus: 200
 }));
 
