@@ -23,9 +23,12 @@ const ProjectsGrid = ({ projects }) => {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {projectsByYear[year].map((project) => (
-                <Link to={`/projects/${project.id}`} rel="noopener noreferrer">
+                <Link
+                  key={project.id}
+                  to={`/projects/${project.id}`}
+                  rel="noopener noreferrer"
+                >
                   <ProjectListItem
-                    key={project.id}
                     title={project.title}
                     subtitle={project.subtitle}
                     description={project.description}
