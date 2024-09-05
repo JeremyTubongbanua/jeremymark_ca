@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getTagColor } from "../utils/tagColors.js";
-import { LANGUAGE_OPTIONS, TECH_OPTIONS, FIELD_OPTIONS, ASSOCIATION_OPTIONS, PROGRESS_OPTIONS } from "../constants";
+import {
+  LANGUAGE_OPTIONS,
+  TECH_OPTIONS,
+  FIELD_OPTIONS,
+  ASSOCIATION_OPTIONS,
+  PROGRESS_OPTIONS,
+} from "../constants";
 import { useSearchParams } from "react-router-dom";
 
 function ProjectsFilter({ onFilterChange }) {
@@ -18,11 +24,15 @@ function ProjectsFilter({ onFilterChange }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    const decodeArrayParam = (param) => {
+      return searchParams.getAll(param).map(decodeURIComponent);
+    };
+
     setFilters({
       search: searchParams.get("search") || "",
-      languages: searchParams.get("languages")?.split(",") || [],
-      field: searchParams.get("field")?.split(",") || [],
-      tech: searchParams.get("tech")?.split(",") || [],
+      languages: decodeArrayParam("languages") || [],
+      field: decodeArrayParam("field") || [],
+      tech: decodeArrayParam("tech") || [],
       progress: searchParams.get("progress") || "",
       association: searchParams.get("association") || "",
     });
@@ -106,7 +116,9 @@ function ProjectsFilter({ onFilterChange }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6">
             {/* Languages Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-lg sm:text-xl mb-2">Languages</label>
+              <label className="text-white text-lg sm:text-xl mb-2">
+                Languages
+              </label>
               <div className="space-y-2">
                 {LANGUAGE_OPTIONS.map((lang) => (
                   <button
@@ -126,7 +138,9 @@ function ProjectsFilter({ onFilterChange }) {
 
             {/* Field Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-lg sm:text-xl mb-2">Field</label>
+              <label className="text-white text-lg sm:text-xl mb-2">
+                Field
+              </label>
               <div className="space-y-2">
                 {FIELD_OPTIONS.map((field) => (
                   <button
@@ -166,7 +180,9 @@ function ProjectsFilter({ onFilterChange }) {
 
             {/* Progress Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-lg sm:text-xl mb-2">Progress</label>
+              <label className="text-white text-lg sm:text-xl mb-2">
+                Progress
+              </label>
               <div className="space-y-2">
                 {PROGRESS_OPTIONS.map((progress) => (
                   <button
@@ -186,7 +202,9 @@ function ProjectsFilter({ onFilterChange }) {
 
             {/* Association Filter */}
             <div className="flex flex-col">
-              <label className="text-white text-lg sm:text-xl mb-2">Association</label>
+              <label className="text-white text-lg sm:text-xl mb-2">
+                Association
+              </label>
               <div className="space-y-2">
                 {ASSOCIATION_OPTIONS.map((association) => (
                   <button
