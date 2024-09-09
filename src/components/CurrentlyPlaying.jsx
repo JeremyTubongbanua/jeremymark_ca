@@ -56,14 +56,14 @@ const CurrentlyPlaying = () => {
   };
 
   return (
-    <div className="max-w-full p-4 bg-gray-900 rounded-lg shadow-lg flex items-center">
+    <div className="max-w-full p-4 bg-gray-900 rounded-lg shadow-lg flex flex-wrap items-center">
       <img
         src={album.images[0].url}
         alt={`${name} album cover`}
-        className="w-20 h-20 sm:w-32 sm:h-32 rounded-lg"
+        className="w-20 h-20 sm:w-32 sm:h-32 rounded-lg mb-4 sm:mb-0"
       />
       <div className="ml-4 flex-1">
-        <h2 className="text-white text-xl font-semibold">
+        <h2 className="text-white text-lg sm:text-xl font-semibold">
           <a
             href={external_urls.spotify}
             target="_blank"
@@ -87,7 +87,7 @@ const CurrentlyPlaying = () => {
             </span>
           ))}
         </h2>
-        <p className="text-gray-400">
+        <p className="text-gray-400 text-sm sm:text-base">
           Album:{' '}
           <a
             href={album.external_urls.spotify}
@@ -105,7 +105,7 @@ const CurrentlyPlaying = () => {
               style={{ width: `${(progress / duration_ms) * 100}%` }}
             ></div>
           </div>
-          <span className="ml-2 text-gray-400 text-sm">
+          <span className="ml-2 text-gray-400 text-xs sm:text-sm">
             {formatTime(progress)} of {formatTime(duration_ms)}
           </span>
         </div>

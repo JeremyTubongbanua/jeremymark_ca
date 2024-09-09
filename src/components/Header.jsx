@@ -11,13 +11,14 @@ function Header() {
   return (
     <header className="w-screen font-jockey bg-bg-100">
       <div className="px-4 py-4 lg:px-48">
-        <h1 className="text-4xl font-bold mb-4 lg:text-5xl">
+        <h1 className="text-5xl font-bold mb-4 lg:text-6xl">
           <Link to="/" className="hover:text-blue-300">JEREMY MARK TUBONGBANUA</Link>
         </h1>
       </div>
       <nav className="bg-secondary-100">
         <div className="flex items-center justify-between px-4 lg:px-48">
-          <ul className="hidden lg:flex space-x-10 text-lg py-2">
+          {/* Desktop menu */}
+          <ul className="hidden lg:flex space-x-10 text-xl py-4">
             <li className="hover:text-blue-300">
               <Link to="/about">ABOUT</Link>
             </li>
@@ -28,17 +29,19 @@ function Header() {
               <Link to="/experiences">EXPERIENCES</Link>
             </li>
           </ul>
+
           {/* Mobile menu button */}
           <button
-            className="lg:hidden text-white"
+            className="lg:hidden text-white text-3xl"
             onClick={toggleMobileMenu}
           >
             ☰
           </button>
         </div>
+
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <ul className="lg:hidden flex flex-col space-y-2 px-4 py-2 bg-secondary-100">
+          <ul className="lg:hidden flex flex-col space-y-4 px-6 py-4 bg-secondary-100 text-xl">
             <li className="hover:text-blue-300">
               <Link to="/about" onClick={toggleMobileMenu}>ABOUT</Link>
             </li>
