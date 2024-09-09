@@ -113,7 +113,9 @@ const Projects = () => {
     if (filters.languages.length > 0) {
       filtered = filtered.filter((project) =>
         filters.languages.every((lang) =>
-          project.tags.some((tag) => tag.category === "language" && tag.name === lang)
+          project.tags.some(
+            (tag) => tag.category === "language" && tag.name === lang
+          )
         )
       );
     }
@@ -136,13 +138,17 @@ const Projects = () => {
 
     if (filters.progress) {
       filtered = filtered.filter((project) =>
-        project.tags.some((tag) => tag.category === "progress" && tag.name === filters.progress)
+        project.tags.some(
+          (tag) => tag.category === "progress" && tag.name === filters.progress
+        )
       );
     }
 
     if (filters.association) {
       filtered = filtered.filter((project) =>
-        project.tags.some((tag) => tag.category === "association" && tag.name === filters.association)
+        project.tags.some(
+          (tag) => tag.category === "association" && tag.name === filters.association
+        )
       );
     }
 
@@ -166,6 +172,17 @@ const Projects = () => {
     applyFilters(filters, allProjects);
   };
 
+  const inProgressProjects = filteredProjects.filter((project) =>
+    project.tags.some((tag) => tag.category === "progress" && tag.name === "In-Progress")
+  );
+
+  const completedProjects = filteredProjects.filter(
+    (project) =>
+      !project.tags.some(
+        (tag) => tag.category === "progress" && tag.name === "In-Progress"
+      )
+  );
+
   return (
     <div className="container mx-auto p-4 sm:p-8">
       <h1 className="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8">
@@ -175,7 +192,22 @@ const Projects = () => {
         primaryColor="bg-green-500"
         onFilterChange={handleFilterChange}
       />
-      <ProjectsGrid projects={filteredProjects} />
+      {inProgressProjects.length > 0 && (
+        <>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+            In-Progress
+          </h2>
+          <ProjectsGrid projects={inProgressProjects} />
+        </>
+      )}
+      {completedProjects.length > 0 && (
+        <>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mt-8 mb-4">
+            Completed
+          </h2>
+          <ProjectsGrid projects={completedProjects} />
+        </>
+      )}
     </div>
   );
 };
