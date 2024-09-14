@@ -4,21 +4,22 @@ services:
   nginx_proxy:
     build:
       context: ./nginx
-    image: nginx_proxy
-    container_name: nginx_proxy
+    image: nginx
+    container_name: nginx
     ports:
       - "80:80"
       - "443:443"
+    restart: always
     volumes:
-      - /etc/letsencrypt/live/jeremymark.ca/fullchain.pem:/etc/ssl/certs/jeremymark.ca/fullchain.pem:ro
-      - /etc/letsencrypt/live/jeremymark.ca/privkey.pem:/etc/ssl/private/jeremymark.ca/privkey.pem:ro
-      - /etc/letsencrypt/live/spotify.jeremymark.ca/fullchain.pem:/etc/ssl/certs/spotify.jeremymark.ca/fullchain.pem:ro
-      - /etc/letsencrypt/live/spotify.jeremymark.ca/privkey.pem:/etc/ssl/private/spotify.jeremymark.ca/privkey.pem:ro
+      - /etc/letsencrypt/live/jeremymark.ca-0002/fullchain.pem:/etc/ssl/certs/jeremymark.ca/fullchain.pem:ro
+      - /etc/letsencrypt/live/jeremymark.ca-0002/privkey.pem:/etc/ssl/private/jeremymark.ca/privkey.pem:ro
+      - /etc/letsencrypt/live/spotify.jeremymark.ca-0002/fullchain.pem:/etc/ssl/certs/spotify.jeremymark.ca/fullchain.pem:ro
+      - /etc/letsencrypt/live/spotify.jeremymark.ca-0002/privkey.pem:/etc/ssl/private/spotify.jeremymark.ca/privkey.pem:ro
+    networks:
+      - net
     depends_on:
       - spotify_api
       - jeremymark_ca
-    networks:
-      - net
 
   spotify_api:
     build:
