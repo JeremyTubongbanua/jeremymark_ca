@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 
 app.use(cors({
-    origin: ['https://jeremymark.ca', 'http://jeremymark.ca', 'http://localhost:5173'],
+    origin: ['https://jeremymark.ca', 'http://jeremymark.ca', 'http://localhost:3002', 'http://localhost:3001'],
     optionsSuccessStatus: 200
 }));
 
@@ -56,13 +56,12 @@ app.get('/callback', async (req, res) => {
         console.log('Refresh Token:', refresh_token);
 
         // Set the CORS headers for redirect response
-        res.setHeader('Access-Control-Allow-Origin', 'https://jeremymark.ca');
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-        // Optionally save the refresh token for later use
-        // Redirect back to your app with access and refresh tokens
-        res.redirect(302, `/success?access_token=${access_token}&refresh_token=${refresh_token}`);
+        // Redirect to success page with tokens
+        res.redirect(`/success?access_token=${access_token}&refresh_token=${refresh_token}`);
 
     } catch (error) {
         console.error('Error during token exchange', error);
@@ -70,36 +69,45 @@ app.get('/callback', async (req, res) => {
     }
 });
 
+// Step 3: /success endpoint to display the access and refresh tokens
+app.get('/success', (req, res) => {
+    const access_token = req.query.access_token;
+    const refresh_token = req.query.refresh_token;
 
+    res.send(`
+        <h1>Success!</h1>
+        <p>Access Token: ${access_token}</p>
+        <p>Refresh Token: ${refresh_token}</p>
+        <p>Make sure to store these securely.</p>
+    `);
+});
 
-// Step 3: Endpoint to get currently playing track
+// Step 4: Endpoint to get currently playing track
 app.get('/currently-playing', async (req, res) => {
-    // const access_token = await getAccessToken();
+    const access_token = await getAccessToken();
 
-    // if (!access_token) {
-    //     return res.status(500).json({ error: 'Failed to get access token' });
-    // }
+    if (!access_token) {
+        return res.status(500).json({ error: 'Failed to get access token' });
+    }
 
-    // try {
-    //     const response = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
-    //         headers: {
-    //             'Authorization': 'Bearer ' + access_token
-    //         }
-    //     });
+    try {
+        const response = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+            headers: {
+                'Authorization': 'Bearer ' + access_token
+            }
+        });
 
-    //     if (response.status === 204 || response.data === '') {
-    //         return res.status(200).json({ message: 'No track is currently playing.' });
-    //     }
+        if (response.status === 204 || response.data === '') {
+            return res.status(200).json({ message: 'No track is currently playing.' });
+        }
 
-    //     const currentlyPlaying = response.data;
-    //     return res.json(currentlyPlaying);
+        const currentlyPlaying = response.data;
+        return res.json(currentlyPlaying);
 
-    // } catch (error) {
-    //     console.error('Error fetching currently playing track', error);
-    //     return res.status(500).json({ error: 'Failed to get currently playing track' });
-    // }
-
-    https://jeremymark.ca/callback?code=AQCHaXZT68Uu8qEKyrtSAAofKT627uEH1SbbStMZcOHBb-wJ0YkUtC429BvUQ6SqDJCODopuGqKecHLFZQAe6n6Hw6Skk8SMkRpe6HUlOEtyOvdWIMRQIri_J1l1vL3dKciie76B131hkPY2Y7otIfTemdEI0HxDXOTO6sC4P54fovarmpQTPz4q9WT_6KaqoRqNXadQTmOgXEZ0calfqfKjeQ
+    } catch (error) {
+        console.error('Error fetching currently playing track', error);
+        return res.status(500).json({ error: 'Failed to get currently playing track' });
+    }
 });
 
 // Start the server
@@ -115,7 +123,7 @@ async function getAccessToken() {
             url: 'https://accounts.spotify.com/api/token',
             data: querystring.stringify({
                 grant_type: 'refresh_token',
-                refresh_token: refresh_token,
+                refresh_token: process.env.REFRESH_TOKEN, // Use from .env or pass it appropriately
             }),
             headers: {
                 'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64'),
