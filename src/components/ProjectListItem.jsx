@@ -10,6 +10,11 @@ function ProjectListItem({
   altText,
   tags,
 }) {
+  const formatDate = (dateString) => {
+    const dateObj = new Date(dateString);
+    return dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+  };
+
   return (
     <div className="bg-black p-4 shadow-lg flex flex-col items-start min-h-[400px]">
       <div className="w-full mb-2">
@@ -38,6 +43,12 @@ function ProjectListItem({
           </div>
         )}
       </div>
+
+      {date && (
+        <p className="text-xs sm:text-sm text-gray-400 mb-2">
+          {formatDate(date)}
+        </p>
+      )}
 
       <div className="flex-1">
         <p className="text-xs sm:text-sm text-gray-400">{description}</p>
