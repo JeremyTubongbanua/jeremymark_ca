@@ -1,7 +1,7 @@
 title: "at_c"
 subtitle: ""
 description: "atProtocol implementation re-written in C for ESP32 and Embedded Devices with SSL and cryptography features"
-date: "2024-08-23"
+date: "2023-02-18"
 languages: ["C"]
 field: ["Cryptography", "Cybersecurity", "DevOps", "IoT/Embedded", "Networking"]
 tech: ["CMake", "Docker", "Espressif (ESP-IDF)", "Linux"]
