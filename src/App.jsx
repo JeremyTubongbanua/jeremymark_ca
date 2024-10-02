@@ -7,6 +7,7 @@ import About from "./screens/About";
 import Projects from "./screens/Projects";
 import Experiences from "./screens/Experiences";
 import ProjectPage from "./components/ProjectPage";
+import Awards from "./screens/Awards"; // Import the Awards component
 
 function App() {
    return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:projectId" element={<ProjectPage />} />
             <Route path="/experiences" element={<Experiences />} />
+            <Route path="/awards" element={<Awards />} /> {/* Add Awards route */}
          </Routes>
       </Router>
    );
