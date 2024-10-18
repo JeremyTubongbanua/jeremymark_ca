@@ -1,0 +1,9 @@
+title: "Mapping X"
+subtitle: "1st Place Overall"
+description: "Draw a rectangle on a map and an STL mesh will be generated from DEM and/or SWOT data taken from open-source NASA Earthview data"
+date: "2024-10-06"
+languages: ["Python", "JavaScript"]
+field: ["Web Development"]
+tech: ["React", "Linux"]
+progress: "Finished"
+association: "Hackathon"
